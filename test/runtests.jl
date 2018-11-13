@@ -1,5 +1,5 @@
 using MakieThemes
 using Test
+using Makie
 
-# write your own tests here
-@test 1 == 2
+show_ggthemr(:fresh)
