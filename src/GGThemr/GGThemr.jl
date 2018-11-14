@@ -37,6 +37,7 @@ function ggthemr(theme::Symbol)
     ct = ColorTheme[theme]
     merge(ggthemr_style, Theme(
         color = AbstractPlotting.Palette(ct[:color]),
+        backgroundcolor = parse(Color, ct[:backgroundcolor]),
         axis = Theme(
             frame = Theme(
                 linecolor = parse(Color, ct[:axiscolor])
@@ -57,15 +58,35 @@ function ggthemr(theme::Symbol)
     ))
 end
 
+ColorTheme[:earth] = Dict(
+#    :colorgradient = ["#7A7267", "#DB784D"],
+    :color => [#    "#F8F8F0",
+        "#DB784D", "#95CC5E",
+        "#E84646", "#F8BB39",
+        "#7A7267", "#E1AA93",
+        "#168E7F", "#2B338E"],
+    :axiscolor => "#ffffff", #827D77 #ffffff
+    :gridcolor => "#504940",
+    :tickcolor => "#555555", #F8F8F0 #555555
+    :markerstrokecolor => "#ffffff",
+    :backgroundcolor => "#36312C"
+)
+
 ColorTheme[:fresh] = Dict(
+#    :colorgradient = ["#65ADC2","#362C21"],
     :color =>  ["#65ADC2", "#233B43",
                 "#E84646", "#C29365",
                 "#362C21", "#316675",
                 "#168E7F", "#109B37"],
-    :axiscolor => "#826a50",
+    :axiscolor => "#362C21", #362C21 #826a50
     :gridcolor => "#eee4da",
-    :tickcolor => "#111111",
-    :markerstrokecolor => "white"
+    :tickcolor => "#555555", #111111 #555555
+    :markerstrokecolor => "#ffffff",
+    :backgroundcolor => "#ffffff"
 )
+
+
+
+
 
 end # module
