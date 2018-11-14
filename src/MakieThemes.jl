@@ -1,6 +1,6 @@
 module MakieThemes
 
-include(joinpath("GGThemr","GGThemr.jl"))
+include("GGThemr/GGThemr.jl")
 
 using .GGThemr
 export ggthemr, show_ggthemr
