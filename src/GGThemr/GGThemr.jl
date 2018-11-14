@@ -2,7 +2,7 @@ module GGThemr
 
 using AbstractPlotting, Colors
 
-export ggthemr, show_ggthemr
+export ggthemr, show_ggthemr, ggthemr_colorthemes
 
 function show_ggthemr(theme::Symbol)
     AbstractPlotting.set_theme!(ggthemr(theme))
@@ -13,80 +13,54 @@ function show_ggthemr(theme::Symbol)
     scatter!(scene, randn(20), randn(20), markersize = 0.2)
 end
 
+ggthemr_colorthemes() = collect(keys(ColorTheme))
+
 
 const ggthemr_style = Theme(
-    linewidth = 3,
+    linewidth = 2,
     axis = Theme(
         frame = Theme(
-            linewidth = 5,
+            linewidth = 3,
             frames = ((true, false), (true, false))
         ),
         grid = Theme(
-            linewidth = (4, 4),
+            linewidth = (3, 3),
             linestyle = (:dash, :dash),
         ),
         ticks = Theme(
-            textsize = (5,5),
+            textsize = (4,4),
         ),
     ),
 )
 
-const ColorTheme = Dict{Symbol, Dict{Symbol, Any}}()
-
 function ggthemr(theme::Symbol)
     ct = ColorTheme[theme]
     merge(ggthemr_style, Theme(
-        color = AbstractPlotting.Palette(ct[:color]),
-        backgroundcolor = parse(Color, ct[:backgroundcolor]),
+        color = AbstractPlotting.Palette(ct[:swatch][2:end]),
+        backgroundcolor = parse(Color, ct[:background]),
+        #colorgradient = parse(Color, ct[:gradient]),
         axis = Theme(
             frame = Theme(
-                linecolor = parse(Color, ct[:axiscolor])
+                linecolor = parse(Color, ct[:line][2])
             ),
             grid = Theme(
-                linecolor = (parse(Color, ct[:gridcolor]), parse(Color, ct[:gridcolor]))
+                linecolor = (parse(Color, ct[:gridline]), parse(Color, ct[:gridline]))
             ),
             ticks = Theme(
-                textcolor = (parse(Color, ct[:tickcolor]), parse(Color, ct[:tickcolor]))
+                textcolor = (parse(Color, ct[:text][2]), parse(Color, ct[:text][2]))
             ),
             names = Theme(
-                textcolor = (parse(Color, ct[:tickcolor]), parse(Color, ct[:tickcolor]))
+                textcolor = (parse(Color, ct[:text][2]), parse(Color, ct[:text][2]))
             ),
         ),
         scatter = Theme(
-            strokecolor = parse(Color, ct[:markerstrokecolor]),
+            strokecolor = parse(Color, ct[:background]),
         ),
     ))
 end
 
-ColorTheme[:earth] = Dict(
-#    :colorgradient = ["#7A7267", "#DB784D"],
-    :color => [#    "#F8F8F0",
-        "#DB784D", "#95CC5E",
-        "#E84646", "#F8BB39",
-        "#7A7267", "#E1AA93",
-        "#168E7F", "#2B338E"],
-    :axiscolor => "#ffffff", #827D77 #ffffff
-    :gridcolor => "#504940",
-    :tickcolor => "#555555", #F8F8F0 #555555
-    :markerstrokecolor => "#ffffff",
-    :backgroundcolor => "#36312C"
-)
+const ColorTheme = Dict{Symbol, Dict{Symbol, Any}}()
 
-ColorTheme[:fresh] = Dict(
-#    :colorgradient = ["#65ADC2","#362C21"],
-    :color =>  ["#65ADC2", "#233B43",
-                "#E84646", "#C29365",
-                "#362C21", "#316675",
-                "#168E7F", "#109B37"],
-    :axiscolor => "#362C21", #362C21 #826a50
-    :gridcolor => "#eee4da",
-    :tickcolor => "#555555", #111111 #555555
-    :markerstrokecolor => "#ffffff",
-    :backgroundcolor => "#ffffff"
-)
+include("palettes.jl")
 
-
-
-
-
-end # module
+end #module
