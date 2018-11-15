@@ -2,4 +2,7 @@ using MakieThemes
 using Test
 using Makie
 
-show_ggthemr(:fresh)
+for i in ggthemr_colorthemes()
+      scene = show_ggthemr(i)
+      save("img/$i.png", scene)
+end
