@@ -30,3 +30,22 @@ show_ggthemr(:fresh)
 
 This is the target theme I'm aiming for (image created with R)
 ![ggthemr](img/fresh_ggthemr_r.png)
+
+Currently supported themes are:
+- `:flat`
+- `:dust`
+- `:fresh`
+- `:carrot`
+- `:flat_dark`
+- `:sky`
+- `:copper`
+- `:light`
+- `:pale`
+- `:solarized`
+- `:sea`
+- `:chalk`
+- `:greyscale`
+- `:earth`
+- `:lilac`
+- `:grass`
+- `:grape`
