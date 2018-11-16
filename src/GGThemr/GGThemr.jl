@@ -20,7 +20,7 @@ const ggthemr_style = Theme(
     linewidth = 2,
     axis = Theme(
         frame = Theme(
-            linewidth = 3,
+            linewidth = 2.5,
             frames = ((true, false), (true, false))
         ),
         grid = Theme(
@@ -28,9 +28,13 @@ const ggthemr_style = Theme(
             linestyle = (:dash, :dash),
         ),
         ticks = Theme(
-            textsize = (4,4),
+            textsize = (4.5,4.5),
         ),
     ),
+    scatter = Theme(
+        markersize = 6,
+        strokewidth = 2,
+    )
 )
 
 function ggthemr(theme::Symbol)
