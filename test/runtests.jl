@@ -19,16 +19,19 @@ end
 
   AbstractPlotting.set_theme!(ggthemr(:fresh))
 
-  p1 = scatterlines(www, Style(:Minute, :Users),
+  p1 = scatterlines(Data(www), :Minute, :Users,
     Group(color = :Measure, marker = :Measure),
-    markersize = 6, marker = [1,2]);
+    markersize = 6, marker = [:rect, :circle]);
 
-  p2 = plot(StatsMakie.KernelDensity.kde, mtcars,
-    Style(:mpg), Group(color = :cyl));
+  p2 = plot(density, Data(mtcars),
+    :mpg, Group(color = :cyl));
 
-  p4 = boxplot(drivers, Style(:Year, :Deaths));
+  p3 = plot(Position.stack, histogram, Data(diamonds),
+    :price, Group(color = :cut));
 
-  plot(hbox(vbox(p1, p2), vbox(p3, p4))
+  p4 = boxplot(Data(drivers), :Year, :Deaths);
+
+  vbox(hbox(p1, p2), hbox(p3, p4))
 end
 
     driver_x <- scale_x_discrete(breaks = seq(1969, 1984, 3), label = function(x) paste0("'", substr(x, 3, 4)))

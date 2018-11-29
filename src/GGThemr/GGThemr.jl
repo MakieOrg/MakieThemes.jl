@@ -18,6 +18,7 @@ ggthemr_colorthemes() = collect(keys(ColorTheme))
 
 const ggthemr_style = Theme(
     linewidth = 2,
+    font = "NotoSans",
     axis = Theme(
         frame = Theme(
             linewidth = 2.5,
@@ -42,7 +43,7 @@ function ggthemr(theme::Symbol)
     palettes = merge(AbstractPlotting.default_palettes, Attributes(color = ct[:swatch][2:end]))
     merge(ggthemr_style, Theme(
         palette = palettes,
-        color = ct[:swatch][1],
+        color = ct[:swatch][2], # maybe it should be ct[:swatch][1], this is the color to use in absence of grouping
         backgroundcolor = parse(Color, ct[:background]),
         #colorgradient = parse(Color, ct[:gradient]),
         axis = Theme(
