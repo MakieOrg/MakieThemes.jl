@@ -39,8 +39,10 @@ const ggthemr_style = Theme(
 
 function ggthemr(theme::Symbol)
     ct = ColorTheme[theme]
+    palettes = merge(AbstractPlotting.default_palettes, Attributes(color = ct[:swatch][2:end]))
     merge(ggthemr_style, Theme(
-        color = AbstractPlotting.Palette(ct[:swatch][2:end]),
+        palette = palettes,
+        color = ct[:swatch][1],
         backgroundcolor = parse(Color, ct[:background]),
         #colorgradient = parse(Color, ct[:gradient]),
         axis = Theme(
