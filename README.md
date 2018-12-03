@@ -4,7 +4,7 @@ WIP
 
 The idea of this package is to create a collection of themes for Makie to customize
 the size and look of plot elements and colors. It will initially focus on porting
-themes from existing plotting packages (hence the GPL-3 license).
+themes from existing plotting packages.
 
 Currently I've started work on a `GGThemr` library, that aims to emulate the themes
 at https://github.com/cttobin/ggthemr .
