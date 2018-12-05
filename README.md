@@ -56,18 +56,19 @@ vbox(hbox(p2, p1), hbox(p4, p3))
 This is the target theme I'm aiming for (image created with R)
 ![ggthemr](img/fresh_ggthemr_r.png)
 
-There are still issues such as
-- font sizes vary, and the font is too bold
-- alignments across subpanels
-- axis line thickness
-- the period of the dashed line
-- overplotting of the axes by the dashed line
-- the missing legends
-- outliers and median marker for the boxplots
-- reversed colors for the histogram
-- colored fill area
-- labelling of x and y axes
-- implicit position of the 0,0 point within axes
+#### Current issues:
+- [] font sizes vary, and the font is too bold
+- [] alignments across subpanels
+- [] axis line thickness
+- [] the period of the dashed line
+- [] overplotting of the axes by the dashed line
+- [] the missing legends
+- [] outliers and median marker for the boxplots
+- [x] reversed colors for the histogram
+- [] colored fill area
+- [] labelling of x and y axes
+- [] implicit position of the 0,0 point within axes
+- [] no white edge around marker points
 
 Many of these should be addressed in StatsMakie or AbstractPlotting rather than here.
 
