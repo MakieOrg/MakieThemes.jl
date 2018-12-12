@@ -30,31 +30,3 @@ end
 
   plot(hbox(vbox(p1, p2), vbox(p3, p4))
 end
-
-    driver_x <- scale_x_discrete(breaks = seq(1969, 1984, 3), label = function(x) paste0("'", substr(x, 3, 4)))
-    display_theme <- list(theme(legend.position = 'none'), scale_y_continuous(label = function(x) format(x, big.mark = ",", scientific = FALSE)))
-
-      ggplot(transform(mtcars, cyl = factor(cyl)), aes_string(x = 'mpg', fill = 'cyl', colour = 'cyl')) +
-        geom_density(alpha = 0.75) +
-        labs(fill = 'Cylinders', colour = 'Cylinders', x = 'MPG', y = 'Density') +
-        legend_top(),
-
-      ggplot(transform(diamonds, cut = factor(cut)), aes_string(x = 'price', fill = 'cut')) +
-        geom_histogram(binwidth = 850) +
-        display_theme +
-        xlab('Price (USD)') +
-        ylab('Count') +
-        scale_x_continuous(label = function(x) paste0(x / 1000, 'k')),
-
-      ggplot(drivers, aes_string(x = 'Year', y = 'Deaths')) +
-        geom_boxplot(size = 0.25) +
-        ylab('Monthly Deaths') +
-        display_theme +
-        driver_x
-
-    )
-
-    assign(".Random.seed", old_seed, envir=globalenv())
-    do.call(grid.arrange,  display)
-
-  }
