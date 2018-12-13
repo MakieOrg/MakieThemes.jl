@@ -5,16 +5,18 @@ using CSV
 using DataFrames
 using StatsMakie
 
+
 @testset "simple" begin
   for i in ggthemr_colorthemes()
         scene = show_ggthemr(i)
-        save("img/$i.png", scene)
   end
 end
 
+
 @testset "original" begin
   for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
-    @eval const $(dataset) = CSV.read("data/"*$(string(dataset))*".tsv", delim = '\t', allowmissing = :none)
+    path = joinpath(@__DIR__, "..", "data", string(dataset, ".tsv"))
+    @eval $(dataset) = CSV.read($path, delim = '\t', allowmissing = :none)
   end
 
   AbstractPlotting.set_theme!(ggthemr(:fresh))
