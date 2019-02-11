@@ -51,7 +51,7 @@ p4 = boxplot(Data(drivers), :Year, :Deaths);
 
 vbox(hbox(p3, p1), hbox(p4, p2))
 ```
-![ggthemr_full](img/ggthemr_full_fresh.png)
+![ggthemr_full](https://user-images.githubusercontent.com/8429802/52570314-611c1f00-2e13-11e9-93e8-29514b9d7af4.png)
 
 This is the target theme I'm aiming for (image created with R)
 ![ggthemr](img/fresh_ggthemr_r.png)
