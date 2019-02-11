@@ -30,9 +30,9 @@ show_ggthemr(:fresh)
 
 Here's an expanded visualization based on the examples in the source theme:
 ```julia
-import Pkg;
+using CSV, Pkg
 for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
-  @eval const $(dataset) = CSV.read(Pkg.dir(MakieThemes)*"/data/"*$(string(dataset))*".tsv", delim = '\t', allowmissing = :none)
+  @eval const $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t', allowmissing = :none)
 end
 
 AbstractPlotting.set_theme!(ggthemr(:fresh))
