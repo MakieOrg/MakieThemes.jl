@@ -49,7 +49,7 @@ p3 = plot(Position.stack, histogram, Data(diamonds),
 
 p4 = boxplot(Data(drivers), :Year, :Deaths);
 
-vbox(hbox(p2, p1), hbox(p4, p3))
+vbox(hbox(p3, p1), hbox(p4, p2))
 ```
 ![ggthemr_full](img/ggthemr_full_fresh.png)
 
