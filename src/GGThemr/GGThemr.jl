@@ -19,17 +19,17 @@ ggthemr_colorthemes() = collect(keys(ColorTheme))
 const ggthemr_style = Theme(
     linewidth = 2,
     font = "NotoSans",
-    axis = Theme(
+    axis2d = Theme(
         frame = Theme(
-            linewidth = 2.5,
+            linewidth = 1.5,
             frames = ((true, false), (true, false))
         ),
         grid = Theme(
-            linewidth = (3, 3),
+            linewidth = (2, 2),
             linestyle = (:dash, :dash),
         ),
         ticks = Theme(
-            textsize = (4.5,4.5),
+            textsize = (4.5, 4.5),
         ),
     ),
     scatter = Theme(
