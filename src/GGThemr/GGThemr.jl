@@ -18,9 +18,9 @@ ggthemr_colorthemes() = collect(keys(ColorTheme))
 
 const ggthemr_style = Theme(
     linewidth = 2,
-    
+
     font = "NotoSans",
-    
+
     axis2d = Theme(
         frame = Theme(
             linewidth = 1.5,
@@ -34,29 +34,29 @@ const ggthemr_style = Theme(
             textsize = (4.5, 4.5),
         ),
     ),
-    
+
     axis3d = Theme(
         frame = Theme(
             linewidth = 1.5,
-            
+
         ),
-        
+
         showgrid = true,
-        
+
         showticks = true,
-        
+
         showaxis = true,
-        
+
         ticks = Theme(
             textsize = (4.5, 4.5, 4.5),
         )
-    )
-    
+    ),
+
     scatter = Theme(
         markersize = 6,
         strokewidth = 2,
     ),
-    
+
 )
 
 function ggthemr(theme::Symbol)
