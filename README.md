@@ -30,14 +30,14 @@ show_ggthemr(:fresh)
 
 Here's an expanded visualization based on the examples in the source theme:
 ```julia
-using CSV, Pkg
+using CSV, Pkg, MakieThemes, AbstractPlotting, Makie, StatsMakie
 for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
-  @eval const $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t', allowmissing = :none)
+  @eval const $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t')
 end
 
 AbstractPlotting.set_theme!(ggthemr(:fresh))
 
-p1 = scatterlines(Data(www), :Minute, :Users,
+p1 = scatter(Data(www), :Minute, :Users,
   Group(color = :Measure, marker = :Measure),
   markersize = 6, marker = [:rect, :circle]);
 
