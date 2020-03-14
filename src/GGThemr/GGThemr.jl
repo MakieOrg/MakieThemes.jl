@@ -19,7 +19,7 @@ ggthemr_colorthemes() = collect(keys(ColorTheme))
 const ggthemr_style = Theme(
     linewidth = 2,
 
-    font = "NotoSans",
+    font = "Noto Sans",
 
     axis2d = Theme(
         frame = Theme(
