@@ -13,11 +13,11 @@ Here's the current default look of Makie on my machine:
 
 ```julia
 using Makie
-scene = scatter(randn(20), randn(20), markersize = 0.2)
-scatter!(scene, randn(20), randn(20), markersize = 0.2)
-scatter!(scene, randn(20), randn(20), markersize = 0.2)
-scatter!(scene, randn(20), randn(20), markersize = 0.2)
-scatter!(scene, randn(20), randn(20), markersize = 0.2)
+fig, ax, plt = scatter(randn(20), randn(20))
+scatter!(ax, randn(20), randn(20))
+scatter!(ax, randn(20), randn(20))
+scatter!(ax, randn(20), randn(20))
+scatter!(ax, randn(20), randn(20))
 ```
 <img src="img/default.png" alt="default" width="500"/>
 
@@ -30,14 +30,14 @@ show_ggthemr(:fresh)
 
 Here's an expanded visualization based on the examples in the source theme:
 ```julia
-using CSV, Pkg, MakieThemes, AbstractPlotting, Makie, StatsMakie
+using CSV, DataFrames, Pkg, MakieThemes, Makie, AlgebraOfGraphics
 for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
-  @eval const $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t')
+  @eval const $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t', DataFrame)
 end
 
-AbstractPlotting.set_theme!(ggthemr(:fresh))
+Makie.set_theme!(ggthemr(:fresh))
 
-p1 = scatter(Data(www), :Minute, :Users,
+p1 = scatter(data(www), :Minute, :Users,
   Group(color = :Measure, marker = :Measure),
   markersize = 6, marker = [:rect, :circle]);
 
@@ -48,6 +48,8 @@ p3 = plot(Position.stack, histogram, Data(diamonds),
   :price, Group(color = :cut));
 
 p4 = boxplot(Data(drivers), :Year, :Deaths);
+
+
 
 vbox(hbox(p3, p1), hbox(p4, p2))
 ```
