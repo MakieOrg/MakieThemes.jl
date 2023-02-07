@@ -1,58 +1,60 @@
 module GGThemr
 
-using AbstractPlotting, Colors
+using Makie, Colors
 
 export ggthemr, show_ggthemr, ggthemr_colorthemes
 
 function show_ggthemr(theme::Symbol)
-    AbstractPlotting.set_theme!(ggthemr(theme))
-    scene = scatter(randn(20), randn(20), markersize = 0.2)
-    scatter!(scene, randn(20), randn(20), markersize = 0.2)
-    scatter!(scene, randn(20), randn(20), markersize = 0.2)
-    scatter!(scene, randn(20), randn(20), markersize = 0.2)
-    scatter!(scene, randn(20), randn(20), markersize = 0.2)
+    Makie.with_theme(ggthemr(theme)) do
+        fig, ax, p1 = scatter(randn(20), randn(20), markersize = 0.2)
+        scatter!(ax, randn(20), randn(20), markersize = 0.2)
+        scatter!(ax, randn(20), randn(20), markersize = 0.2)
+        scatter!(ax, randn(20), randn(20), markersize = 0.2)
+        scatter!(ax, randn(20), randn(20), markersize = 0.2)
+        return fig
+    end
 end
 
 ggthemr_colorthemes() = collect(keys(ColorTheme))
 
 
-const ggthemr_style = Theme(
+const ggthemr_style = Attributes(
     linewidth = 2,
 
-    font = "Noto Sans",
-
-    axis2d = Theme(
-        frame = Theme(
-            linewidth = 1.5,
-            frames = ((true, false), (true, false))
-        ),
-        grid = Theme(
-            linewidth = (2, 2),
-            linestyle = (:dash, :dash),
-        ),
-        ticks = Theme(
-            textsize = (4.5, 4.5),
-        ),
+    fonts = (
+        regular = "Noto Sans",
+        bold = "Noto Sans Bold",
+        italic = "Noto Sans Italic",
+        bold_italic = "Noto Sans Bold Italic",
     ),
 
-    axis3d = Theme(
-        frame = Theme(
-            linewidth = 1.5,
+    Axis = Attributes(
+        spinewidth = 1.5,
+        bottomspinevisible = true,
+        topspinevisible = false,
+        leftspinevisible = true,
+        rightspinevisible = false,
+        xgridwidth = 2,
+        ygridwidth = 2,
+        xgridstyle = :dash,
+        ygridstyle = :dash,
+        xticklabelsize = 4.5,
+        yticklabelsize = 4.5,
+    ),
 
-        ),
-
+    Axis3 = Attributes(
+        spinewidth = 1.5,
         showgrid = true,
-
         showticks = true,
-
-        showaxis = true,
-
-        ticks = Theme(
+        xticklabelsize = 4.5,
+        yticklabelsize = 4.5,
+        zticklabelsize = 4.5,
+        ticks = Attributes(
             textsize = (4.5, 4.5, 4.5),
         )
     ),
 
-    scatter = Theme(
+    Scatter = Attributes(
         markersize = 6,
         strokewidth = 2,
     ),
@@ -62,27 +64,27 @@ const ggthemr_style = Theme(
 function ggthemr(theme::Symbol)
     ct = ColorTheme[theme]
     palettes = merge(AbstractPlotting.default_palettes, Attributes(color = ct[:swatch][2:end]))
-    merge(ggthemr_style, Theme(
+    merge(ggthemr_style, Attributes(
         palette = palettes,
         color = ct[:swatch][2], # maybe it should be ct[:swatch][1], this is the color to use in absence of grouping
-        backgroundcolor = parse(Color, ct[:background]),
+        backgroundcolor = Makie.to_color(ct[:background]),
         #colorgradient = parse(Color, ct[:gradient]),
-        axis = Theme(
-            frame = Theme(
-                linecolor = parse(Color, ct[:line][2])
-            ),
-            grid = Theme(
-                linecolor = (parse(Color, ct[:gridline]), parse(Color, ct[:gridline]))
-            ),
-            ticks = Theme(
-                textcolor = (parse(Color, ct[:text][2]), parse(Color, ct[:text][2]))
-            ),
-            names = Theme(
-                textcolor = (parse(Color, ct[:text][2]), parse(Color, ct[:text][2]))
-            ),
+        Axis = Attributes(
+            topspinecolor = Makie.to_color(ct[:line][2]),
+            bottomspinecolor = Makie.to_color(ct[:line][2]),
+            leftspinecolor = Makie.to_color(ct[:line][2]),
+            rightspinecolor = Makie.to_color(ct[:line][2]),
+            xgridcolor = Makie.to_color(ct[:gridline]),
+            ygridcolor = Makie.to_color(ct[:gridline]),
+            # xminorgridcolor = Makie.to_color(ct[:gridline]),
+            # yminorgridcolor = Makie.to_color(ct[:gridline]),
+            xlabelcolor = Makie.to_color(ct[:text][2]),
+            ylabelcolor = Makie.to_color(ct[:text][2]),
+            xticklabelcolor = Makie.to_color(ct[:text][2]),
+            yticklabelcolor = Makie.to_color(ct[:text][2]),
         ),
-        scatter = Theme(
-            strokecolor = parse(Color, ct[:background]),
+        Scatter = Attributes(
+            strokecolor = Makie.to_color(ct[:background]),
         ),
     ))
 end
