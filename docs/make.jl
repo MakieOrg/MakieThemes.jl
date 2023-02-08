@@ -5,7 +5,7 @@ using Documenter
 DocMeta.setdocmeta!(MakieThemes, :DocTestSetup, :(using MakieThemes, Makie, CairoMakie); recursive=true)
 
 # generate the GGThemr page
-open(joinpath(@__DIR__, "src", "themes", "ggthemr.md"), "w") do io
+open(joinpath(dirname(dirname(pathof(MakieThemes))), "docs", "src", "themes", "ggthemr.md"), "w") do io
     println(io, "# GGThemr")
 
     println(io, """
@@ -34,7 +34,6 @@ makedocs(;
     authors="Michael Krabbe Borregaard <mkborregaard@snm.ku.dk>, Anshul Singhvi <anshul.singhvi@columbia.edu>, and contributors",
     repo="https://github.com/JuliaPlots/MakieThemes.jl/blob/{commit}{path}#{line}",
     sitename="MakieThemes.jl",
-    push_preview = true,
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://juliaplots.github.io/MakieThemes.jl",
@@ -51,7 +50,8 @@ makedocs(;
 deploydocs(;
     repo="github.com/JuliaPlots/MakieThemes.jl",
     devbranch="master",
+    push_preview = true,
 )
 
 # clean up
-rm(joinpath(@__DIR__, "src", "themes", "ggthemr.jl"))
+# rm(joinpath(@__DIR__, "src", "themes", "ggthemr.jl"))
