@@ -15,7 +15,7 @@ open(joinpath(@__DIR__, "src", "themes", "ggthemr.jl"), "w") do io
     ```
     """)
 
-    for colortheme in MakieThemes.ggthemr_colorthemes
+    for colortheme in MakieThemes.ggthemr_colorthemes()
         println(io, "## ggthemr(:$colortheme)")
         println(io, """
         ```@example ggthemr
