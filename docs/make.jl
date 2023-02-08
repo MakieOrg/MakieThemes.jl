@@ -5,7 +5,7 @@ using Documenter
 DocMeta.setdocmeta!(MakieThemes, :DocTestSetup, :(using MakieThemes, Makie, CairoMakie); recursive=true)
 
 # generate the GGThemr page
-open(joinpath(@__DIR__, "src", "themes", "ggthemr.jl"), "w") do io
+open(joinpath(@__DIR__, "src", "themes", "ggthemr.md"), "w") do io
     println(io, "# GGThemr")
 
     println(io, """
