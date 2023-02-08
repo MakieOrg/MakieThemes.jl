@@ -9,10 +9,6 @@ const bbc_red = Makie.to_color(colorant"#b90005")
 
 function _theme_bbc(spinewidth = 1.5, gridwidth = 1.5)
 
-    local bbc_black = Makie.to_color(colorant"#222222")
-    local bbc_red = Makie.to_color(colorant"#b90005")
-    local bbc_gridcolor = Makie.to_color(colorant"#cbcbcb")
-
     return Attributes(
         fontsize = 18,
         textsize = 18,
@@ -65,6 +61,11 @@ function _theme_bbc(spinewidth = 1.5, gridwidth = 1.5)
 end
 
 function color_bbc()
+
+    local bbc_black = Makie.to_color(colorant"#222222")
+    local bbc_red = Makie.to_color(colorant"#b90005")
+    local bbc_gridcolor = Makie.to_color(colorant"#cbcbcb")
+    
     Attributes(
         color = bbc_black,
         Axis = (
