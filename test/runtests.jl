@@ -12,10 +12,12 @@ using AlgebraOfGraphics
     @test_nowarn begin
         fig = MakieThemes.demofigure(ggthemr(i))
         save(joinpath(dirname(@__DIR__), "img", "demofigure", "$i.png"), fig; px_per_unit = 2)
+        Makie.set_theme!(Makie.minimal_default)
     end
   end
   fig = MakieThemes.demofigure(theme_bbc())
   save(joinpath(dirname(@__DIR__), "img", "demofigure", "bbc.png"), fig; px_per_unit = 2)
+  Makie.set_theme!(Makie.minimal_default)
 end
 
 @testset "GGthemr" begin
@@ -23,6 +25,7 @@ end
     for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
       @eval $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t', DataFrame)
     end
+
     
     with_theme(ggthemr(:fresh)) do
       
