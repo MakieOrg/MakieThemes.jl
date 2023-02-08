@@ -8,6 +8,7 @@ using AlgebraOfGraphics
 
 
 @testset "simple" begin
+  mkpath(joinpath(dirname(@__DIR__), "img", "demofigure"))
   for i in ggthemr_colorthemes()
     @test_nowarn begin
         fig = MakieThemes.demofigure(ggthemr(i))
