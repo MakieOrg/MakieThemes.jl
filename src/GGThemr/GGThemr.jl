@@ -1,5 +1,6 @@
 module GGThemr
 
+using ..MakieThemes
 using Makie, Colors
 
 export ggthemr, ggthemr_colorthemes
@@ -53,10 +54,11 @@ function _theme_ggthemr()
     )
 end
 
-function ggthemr(theme::Symbol)
+function color_ggthemr(theme::Symbol)
     ct = ColorTheme[theme]
     palettes = merge(Makie.default_palettes, Attributes(color = ct[:swatch][2:end]))
-    merge(_theme_ggthemr(), Attributes(
+
+    Attributes(
         backgroundcolor = Makie.to_color(ct[:background]),
         palette = palettes,
         color = ct[:swatch][2], # maybe it should be ct[:swatch][1], this is the color to use in absence of grouping
@@ -102,7 +104,12 @@ function ggthemr(theme::Symbol)
         Scatter = Attributes(
             strokecolor = Makie.to_color(ct[:background]),
         ),
-    ))
+    )
+end
+
+function ggthemr(theme::Symbol)
+
+    merge(_theme_ggthemr(), color_ggthemr(theme))
 end
 
 const ColorTheme = Dict{Symbol, Dict{Symbol, Any}}()

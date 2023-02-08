@@ -7,36 +7,28 @@ export theme_bbc
 const bbc_black = Makie.to_color(colorant"#222222")
 const bbc_red = Makie.to_color(colorant"#b90005")
 
-"""
-    theme_bbc()
+function _theme_bbc(spinewidth = 1.5, gridwidth = 1.5)
 
-This theme attempts to copy the `theme_bbc` from BBplot.
-"""
-function theme_bbc()
-
-    bbc_black = Makie.to_color(colorant"#222222")
-    bbc_red = Makie.to_color(colorant"#b90005")
-    bbc_gridcolor = Makie.to_color(colorant"#cbcbcb")
+    local bbc_black = Makie.to_color(colorant"#222222")
+    local bbc_red = Makie.to_color(colorant"#b90005")
+    local bbc_gridcolor = Makie.to_color(colorant"#cbcbcb")
 
     return Attributes(
-        color = bbc_black,
         fontsize = 18,
         textsize = 18,
         Axis = (
             titlesize = 28,
             titlefont = :bold,
-            titlecolor = bbc_black,
             titlegap = 9f0,
             titlealign = :left,
             subtitlesize = 22,
-            subtitlecolor = bbc_black,
             subtitlegap = 9f0,
             subtitlealign = :left,
             topspinevisible = false,
             rightspinevisible = false,
             bottomspinevisible = true,
             leftspinevisible = false,
-            spinewidth = 1.5,
+            spinewidth = spinewidth,
             xticksvisible = false,
             yticksvisible = false,
             xticklabelsvisible = false,
@@ -47,8 +39,37 @@ function theme_bbc()
             yminorgridvisible = false,
             xgridvisible = false,
             ygridvisible = true,
-            ygridwidth = 1.5,
+            xgridwidth = gridwidth,
+            ygridwidth = gridwidth,
+        ),
+        Axis3 = (
+            titlesize = 28,
+            titlefont = :bold,
+            titlegap = 9f0,
+            subtitlesize = 22,
+            subtitlegap = 9f0,
+        ),
+        Legend = (
+            framevisible = false, 
+            labelsize = 18,
+        ),
+        # once Makie can support multiple faces in one font file,
+        # uncomment the following:
+        # fonts = (
+        #     regular = "Helvetica",
+        #     bold = "Helvetica Bold",
+        #     italic = "Helvetica Italic",
+        #     bold_italic = "Helvetica Bold Italic",
+        # )
+    )
+end
 
+function color_bbc()
+    Attributes(
+        color = bbc_black,
+        Axis = (
+            titlecolor = bbc_black,
+            subtitlecolor = bbc_black,
             topspinecolor = bbc_black,
             bottomspinecolor = bbc_black,
             leftspinecolor = bbc_black,
@@ -61,14 +82,8 @@ function theme_bbc()
             ytickcolor = bbc_black,
         ),
         Axis3 = (
-            titlesize = 28,
-            titlefont = :bold,
             titlecolor = bbc_black,
-            titlegap = 9f0,
-            subtitlesize = 22,
             subtitlecolor = bbc_black,
-            subtitlegap = 9f0,
-
             xspinecolor_1 = bbc_black,
             xspinecolor_2 = bbc_black,
             xspinecolor_3 = bbc_black,
@@ -85,10 +100,19 @@ function theme_bbc()
             ytickcolor = bbc_black,
             ztickcolor = bbc_black,
         ),
-        Legend = (
-            framevisible = false, 
-            labelsize = 18,
-        ),
+    )
+end
+
+"""
+    theme_bbc()
+
+This theme attempts to copy the `theme_bbc` from BBplot.
+"""
+function theme_bbc()
+
+    return merge(
+        _theme_bbc(),
+        color_bbc(),
         # once Makie can support multiple faces in one font file,
         # uncomment the following:
         # fonts = (
