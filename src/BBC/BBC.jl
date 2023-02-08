@@ -4,9 +4,18 @@ using Makie, Colors
 
 export theme_bbc
 
+const bbc_black = Makie.to_color(colorant"#222222")
+const bbc_red = Makie.to_color(colorant"#b90005")
+
+"""
+    theme_bbc()
+
+This theme attempts to copy the `theme_bbc` from BBplot.
+"""
 function theme_bbc()
 
     bbc_black = Makie.to_color(colorant"#222222")
+    bbc_red = Makie.to_color(colorant"#b90005")
     bbc_gridcolor = Makie.to_color(colorant"#cbcbcb")
 
     return Attributes(
@@ -39,7 +48,17 @@ function theme_bbc()
             xgridvisible = false,
             ygridvisible = true,
             ygridwidth = 1.5,
+
+            topspinecolor = bbc_black,
+            bottomspinecolor = bbc_black,
+            leftspinecolor = bbc_black,
+            rightspinecolor = bbc_black,
+            xgridcolor = bbc_gridcolor,
             ygridcolor = bbc_gridcolor,
+            xminorgridcolor = bbc_gridcolor,
+            yminorgridcolor = bbc_gridcolor,
+            xtickcolor = bbc_black,
+            ytickcolor = bbc_black,
         ),
         Axis3 = (
             titlesize = 28,
@@ -49,6 +68,22 @@ function theme_bbc()
             subtitlesize = 22,
             subtitlecolor = bbc_black,
             subtitlegap = 9f0,
+
+            xspinecolor_1 = bbc_black,
+            xspinecolor_2 = bbc_black,
+            xspinecolor_3 = bbc_black,
+            yspinecolor_1 = bbc_black,
+            yspinecolor_2 = bbc_black,
+            yspinecolor_3 = bbc_black,            
+            zspinecolor_1 = bbc_black,
+            zspinecolor_2 = bbc_black,
+            zspinecolor_3 = bbc_black,
+            xgridcolor = bbc_gridcolor,
+            ygridcolor = bbc_gridcolor,
+            zgridcolor = bbc_gridcolor,
+            xtickcolor = bbc_black,
+            ytickcolor = bbc_black,
+            ztickcolor = bbc_black,
         ),
         Legend = (
             framevisible = false, 
