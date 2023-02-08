@@ -34,6 +34,7 @@ makedocs(;
     authors="Michael Krabbe Borregaard <mkborregaard@snm.ku.dk>, Anshul Singhvi <anshul.singhvi@columbia.edu>, and contributors",
     repo="https://github.com/JuliaPlots/MakieThemes.jl/blob/{commit}{path}#{line}",
     sitename="MakieThemes.jl",
+    push_preview = true,
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://juliaplots.github.io/MakieThemes.jl",
