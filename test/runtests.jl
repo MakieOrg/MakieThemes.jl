@@ -1,37 +1,50 @@
 using MakieThemes
 using Test
-using Makie
+using Makie, CairoMakie
 using CSV
 using DataFrames
-using StatsMakie
+using AlgebraOfGraphics
+
 
 
 @testset "simple" begin
   for i in ggthemr_colorthemes()
-        scene = show_ggthemr(i)
+    @test_nowarn begin
+        fig = MakieThemes.demofigure(ggthemr(i))
+        save(joinpath(dirname(@__DIR__), "img", "demofigure", "$i.png"), fig; px_per_unit = 2)
+    end
   end
+  fig = MakieThemes.demofigure(theme_bbc())
+  save(joinpath(dirname(@__DIR__), "img", "demofigure", "bbc.png"), fig; px_per_unit = 2)
 end
 
-
-@testset "original" begin
-  for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
-    path = joinpath(@__DIR__, "..", "data", string(dataset, ".tsv"))
-    @eval $(dataset) = CSV.read($path, delim = '\t', allowmissing = :none)
+@testset "GGthemr" begin
+  @testset "original" begin
+    for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
+      @eval $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t', DataFrame)
+    end
+    
+    with_theme(ggthemr(:fresh)) do
+      
+      fig = Figure()
+      
+      www_grid = draw!(fig[1, 1], data(www) * mapping(:Minute, :Users, color = :Measure, marker = :Measure) * (visual(Lines) + visual(Scatter)))
+      legend!(fig[1, 1, Top()], www_grid; orientation = :horizontal, titleposition = :left)
+      
+      
+      mtcars_grid = draw!(fig[1, 2], data(mtcars) * mapping(:mpg, color = :cyl => nonnumeric) * AlgebraOfGraphics.density())
+      
+      legend!(fig[1, 2, Top()], mtcars_grid; orientation = :horizontal, titleposition = :left)
+      
+      diamonds_grid = draw!(fig[2, 1], 
+          data(diamonds) * mapping(:price, color = :cut, stack = :cut) * AlgebraOfGraphics.histogram(); 
+          axis = (xtickformat = x -> string.(round.(Int, x)),)
+        )
+      
+      drivers_grid = draw!(fig[2, 2], data(drivers) * mapping(:Year, :Deaths) * visual(BoxPlot))
+      
+      @test_nowarn save(joinpath(dirname(@__DIR__), "img", "ggthemr_full_fresh.png"), fig; px_per_unit = 2)
+    
+    end
   end
-
-  AbstractPlotting.set_theme!(ggthemr(:fresh))
-
-  p1 = scatterlines(Data(www), :Minute, :Users,
-    Group(color = :Measure, marker = :Measure),
-    markersize = 6, marker = [:rect, :circle]);
-
-  p2 = plot(density, Data(mtcars),
-    :mpg, Group(color = :cyl));
-
-  p3 = plot(Position.stack, histogram, Data(diamonds),
-    :price, Group(color = :cut));
-
-  p4 = boxplot(Data(drivers), :Year, :Deaths);
-
-  vbox(hbox(p1, p2), hbox(p3, p4))
 end
