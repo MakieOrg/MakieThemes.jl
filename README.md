@@ -22,14 +22,14 @@ Here's the current default look of Makie:
 using Makie, MakieThemes
 Makie.demoscatter()
 ```
-<img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/stable/assets/img/demoscatter/default.png" alt="default" width="500"/>
+<img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/dev/assets/img/demoscatter/default.png" alt="default" width="500"/>
 
 Using the `:fresh` theme from `GGThemr`;
 ```julia
 using MakieThemes
 MakieThemes.demoscatter(theme_ggthemr(:fresh))
 ```
-<img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/stable/assets/img/demoscatter/fresh.png" alt="ggthemr" width="500"/>
+<img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/dev/assets/img/demoscatter/fresh.png" alt="ggthemr" width="500"/>
 
 Here's an expanded visualization based on the examples in the source theme:
 
@@ -65,7 +65,7 @@ fig
 ```
 
 </details>
-![ggthemr_full](https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/stable/assets/img/ggthemr_full_fresh.png)
+![ggthemr_full](https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/dev/assets/img/ggthemr_full_fresh.png)
 
 This is the target theme I'm aiming for (image created with R)
 ![ggthemr](img/fresh_ggthemr_r.png)
