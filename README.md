@@ -15,14 +15,14 @@ Here's the current default look of Makie on my machine:
 using Makie, MakieThemes
 Makie.demoscatter()
 ```
-<img src="img/default.png" alt="default" width="500"/>
+<img src="https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/demoscatter/default.png" alt="default" width="500"/>
 
 Using the `:fresh` theme from `GGThemr`
 ```julia
 using MakieThemes
 MakieThemes.demoscatter(:fresh)
 ```
-<img src="img/fresh.png" alt="ggthemr" width="500"/>
+<img src="https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/demoscatter/fresh.png" alt="ggthemr" width="500"/>
 
 Here's an expanded visualization based on the examples in the source theme:
 ```julia
@@ -52,7 +52,7 @@ drivers_grid = draw!(fig[2, 2], data(drivers) * mapping(:Year, :Deaths) * visual
 
 fig
 ```
-![ggthemr_full](img/ggthemr_full_fresh.png)
+![ggthemr_full](https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/demofigure/fresh.png)
 
 This is the target theme I'm aiming for (image created with R)
 ![ggthemr](img/fresh_ggthemr_r.png)

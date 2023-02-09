@@ -9,15 +9,33 @@ using AlgebraOfGraphics
 
 @testset "simple" begin
   mkpath(joinpath(dirname(@__DIR__), "img", "demofigure"))
+  mkpath(joinpath(dirname(@__DIR__), "img", "demoscatter"))
+
+  fig = MakieThemes.demofigure(Makie.minimal_default)
+  save(joinpath(dirname(@__DIR__), "img", "demofigure", "default.png"), fig; px_per_unit = 2)
+
+  fig = MakieThemes.demoscatter(Makie.minimal_default)
+  save(joinpath(dirname(@__DIR__), "img", "demoscatter", "default.png"), fig; px_per_unit = 2)
+
+
   for i in ggthemr_colorthemes()
     @test_nowarn begin
         fig = MakieThemes.demofigure(theme_ggthemr(i))
         save(joinpath(dirname(@__DIR__), "img", "demofigure", "$i.png"), fig; px_per_unit = 2)
+
+        fig = MakieThemes.demoscatter(theme_ggthemr(i))
+        save(joinpath(dirname(@__DIR__), "img", "demoscatter", "$i.png"), fig; px_per_unit = 2)
+
         Makie.set_theme!(Makie.minimal_default)
     end
   end
   fig = MakieThemes.demofigure(theme_bbc())
   save(joinpath(dirname(@__DIR__), "img", "demofigure", "bbc.png"), fig; px_per_unit = 2)
+
+
+  fig = MakieThemes.demoscatter(theme_bbc())
+  save(joinpath(dirname(@__DIR__), "img", "demoscatter", "bbc.png"), fig; px_per_unit = 2)
+  
   Makie.set_theme!(Makie.minimal_default)
 end
 
