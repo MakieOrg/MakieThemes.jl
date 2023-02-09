@@ -1,30 +1,41 @@
 # MakieThemes
 
-WIP
+
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://makie.org/MakieThemes.jl/stable/)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://makie.org/MakieThemes.jl/dev/)
+[![Build Status](https://github.com/MakieOrg/MakieThemes.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/MakieOrg/MakieThemes.jl/actions/workflows/CI.yml?query=branch%3Amain)
+
 
 The idea of this package is to create a collection of themes for Makie to customize
 the size and look of plot elements and colors. It will initially focus on porting
 themes from existing plotting packages.
 
-Currently I've started work on a `GGThemr` library, that aims to emulate the themes
-at https://github.com/cttobin/ggthemr .
+Currently, we provide the following libraries:
+- `GGThemr` - inspired by [ggthemr](https://github.com/cttobin/ggthemr), a R library for ggplot themes.
+- `BBC` - emulating the BBC's plot style, found in [bbplot](https://github.com/bbc/bbplot).
 
-Here's the current default look of Makie on my machine:
+We do plan to add more themes, and PRs are welcome!
+
+Here's the current default look of Makie:
 
 ```julia
 using Makie, MakieThemes
 Makie.demoscatter()
 ```
-<img src="https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/demoscatter/default.png" alt="default" width="500"/>
+<img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/stable/assets/img/demoscatter/default.png" alt="default" width="500"/>
 
-Using the `:fresh` theme from `GGThemr`
+Using the `:fresh` theme from `GGThemr`;
 ```julia
 using MakieThemes
-MakieThemes.demoscatter(:fresh)
+MakieThemes.demoscatter(theme_ggthemr(:fresh))
 ```
-<img src="https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/demoscatter/fresh.png" alt="ggthemr" width="500"/>
+<img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/stable/assets/img/demoscatter/fresh.png" alt="ggthemr" width="500"/>
 
 Here's an expanded visualization based on the examples in the source theme:
+
+<details>
+<summary>Code</summary>
+
 ```julia
 using CSV, DataFrames, MakieThemes, Makie, AlgebraOfGraphics
 for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
@@ -52,26 +63,17 @@ drivers_grid = draw!(fig[2, 2], data(drivers) * mapping(:Year, :Deaths) * visual
 
 fig
 ```
-![ggthemr_full](https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/ggthemr_full_fresh.png)
+
+</details>
+![ggthemr_full](https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/stable/assets/img/ggthemr_full_fresh.png)
 
 This is the target theme I'm aiming for (image created with R)
 ![ggthemr](img/fresh_ggthemr_r.png)
 
+## Color v/s style themes
+
+In MakieThemes, we try to maintain a separation between _color_ themes (dark v/s light theme, background colors, palettes, etc) and _style_ themes (fonts, grid styles, title alignments, etc).  This provides a lot of flexibility - you might 
+
 #### Current issues:
-- [x] font sizes vary, and the font is too bold
-- [x] alignments across subpanels
 - [ ] axis line thickness
 - [ ] the period of the dashed line
-- [x] overplotting of the axes by the dashed line
-- [x] the missing legends
-- [x] outliers and median marker for the boxplots
-- [x] reversed colors for the histogram
-- [x] colored fill area
-- [x] labelling of x and y axes
-- [x] implicit position of the 0,0 point within axes
-- [x] no white edge around marker points
-
-
-Currently supported theme libraries are:
-- [ggthemr](ggthemr.md)
-- [bbplot](bbplot.md)
