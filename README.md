@@ -3,7 +3,7 @@
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://makie.org/MakieThemes.jl/stable/)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://makie.org/MakieThemes.jl/dev/)
-[![Build Status](https://github.com/MakieOrg/MakieThemes.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/MakieOrg/MakieThemes.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Build Status](https://github.com/MakieOrg/MakieThemes.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/MakieOrg/MakieThemes.jl/actions/workflows/CI.yml?query=branch%3Amaster)
 
 
 The idea of this package is to create a collection of themes for Makie to customize
