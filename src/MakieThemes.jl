@@ -2,7 +2,7 @@ module MakieThemes
 
 using Makie, Colors
 
-include("sGGThemr.jl")
+include("GGThemr.jl")
 
 using .GGThemr
 export theme_ggthemr, ggthemr, style_ggthemr, color_ggthemr, ggthemr_colorthemes
