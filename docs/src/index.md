@@ -4,7 +4,7 @@ CurrentModule = MakieThemes
 
 ```@setup env
 using MakieThemes, Makie, CairoMakie
-CairoMakie.activate!(type="svg")
+CairoMakie.activate!(type="png", px_per_unit = 2)
 ```
 
 # MakieThemes
