@@ -38,11 +38,11 @@ end
 makedocs(;
     modules=[MakieThemes],
     authors="Michael Krabbe Borregaard <mkborregaard@snm.ku.dk>, Anshul Singhvi <anshul.singhvi@columbia.edu>, and contributors",
-    repo="https://github.com/JuliaPlots/MakieThemes.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/MakieOrg/MakieThemes.jl/blob/{commit}{path}#{line}",
     sitename="MakieThemes.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://juliaplots.github.io/MakieThemes.jl",
+        canonical="https://makieorg.github.io/MakieThemes.jl",
         edit_link="master",
         assets=String[],
     ),
@@ -50,11 +50,12 @@ makedocs(;
         "Home" => "index.md",
         "BBC" => "themes/bbc.md",
         "GGThemr" => "themes/ggthemr.md",
+        "API" => "api.md"
     ],
 )
 
 deploydocs(;
-    repo="github.com/JuliaPlots/MakieThemes.jl",
+    repo="github.com/MakieOrg/MakieThemes.jl",
     devbranch="master",
     push_preview = true,
 )

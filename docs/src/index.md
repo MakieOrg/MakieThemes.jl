@@ -9,9 +9,6 @@ CairoMakie.activate!(type="svg")
 
 # MakieThemes
 
-
-WIP
-
 The idea of this package is to create a collection of themes for Makie to customize
 the size and look of plot elements and colors. It will initially focus on porting
 themes from existing plotting packages.
@@ -34,9 +31,22 @@ MakieThemes.demofigure()
 MakieThemes.demoscatter()
 ```
 
-```@index
+## The concept of MakieThemes
+
+In MakieThemes, we try to maintain a separation between _color themes_ (dark v/s light theme, background colors, palettes, etc) and _style themes_ (fonts, grid styles, title alignments, etc). 
+
+This provides a lot of flexibility - you might mix the BBC's style with GGThemr's flat color scheme, simply using `merge(style_bbc(), color_ggthemr(:flat))`!
+
+The way this is implemented is simple: each theme is implemented internally as separate color and style themes.  Take the example of `GGThemr`'s structure below:
+
+```julia
+color_ggthemr(:colortheme)  # implemented as color theme
+style_ggthemr()             # implemented as style theme
+theme_ggthemr(:colortheme) = merge(color_ggthemr(:colortheme), style_ggthemr())
 ```
 
-```@autodocs
-Modules = [MakieThemes]
+In this way, you can stitch together various colour and style themes with ease.  
+
+```@example env
+MakieThemes.demofigure(merge(style_bbc(), color_ggthemr(:fresh)))
 ```
