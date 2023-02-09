@@ -8,7 +8,7 @@ using Pkg
 Pkg.test("MakieThemes")
 
 mkpath(joinpath(@__DIR__, "src", "assets"))
-cp(joinpath(dirname(@__DIR__), "img"), joinpath(@__DIR__, "src", "assets"))
+cp(joinpath(dirname(@__DIR__), "img"), joinpath(@__DIR__, "src", "assets", "img"))
 
 # generate the GGThemr page
 open(joinpath(dirname(dirname(pathof(MakieThemes))), "docs", "src", "themes", "ggthemr.md"), "w") do io
