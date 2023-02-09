@@ -2,18 +2,25 @@ module MakieThemes
 
 using Makie, Colors
 
-include("GGThemr/GGThemr.jl")
+include("sGGThemr.jl")
 
 using .GGThemr
-export ggthemr, ggthemr_colorthemes
+export theme_ggthemr, ggthemr, style_ggthemr, color_ggthemr, ggthemr_colorthemes
 
-include("BBC/BBC.jl")
+include("BBC.jl")
 using .BBC
-export theme_bbc
+export theme_bbc, style_bbc, color_bbc
 
 using Random
 
-function demofigure(theme = Makie.current_default_theme())
+"""
+    demofigure([theme::Attributes])
+
+Shows off a demonstration figure with the given `theme` (defaults to the current theme).
+The figure contains scatters, surfaces, bands, and barplots, as well as legends, titles, etc.
+It is able to show off most aspects of the theme!
+"""
+function demofigure(theme::Attributes = Makie.current_default_theme())
     Random.seed!(2)
     with_theme(theme) do
         f = Makie.Figure()
@@ -68,8 +75,13 @@ function demofigure(theme = Makie.current_default_theme())
     end
 end
 
+"""
+    demoscatter([theme::Attributes]; legend_vertical = true, legend_outside_axis = true)
 
-function demoscatter(theme = Makie.current_default_theme(); legend_vertical = true, legend_outside_axis = true)
+Shows off a demonstration scatter plot with the given `theme` (defaults to the current theme).
+A legend is also plotted.
+"""
+function demoscatter(theme::Attributes = Makie.current_default_theme(); legend_vertical = true, legend_outside_axis = true)
     Makie.with_theme(theme) do
         fig, ax, p1 = scatter(randn(20), randn(20); label = "Variable 1")
         scatter!(ax, randn(20), randn(20); label = "Variable 2")

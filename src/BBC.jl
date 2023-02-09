@@ -2,12 +2,12 @@ module BBC
 
 using Makie, Colors
 
-export theme_bbc
+export theme_bbc, style_bbc, color_bbc, bbc
 
 const bbc_black = Makie.to_color(colorant"#222222")
 const bbc_red = Makie.to_color(colorant"#b90005")
 
-function _theme_bbc(spinewidth = 1.5, gridwidth = 1.5)
+function style_bbc(spinewidth = 1.5, gridwidth = 1.5)
 
     return Attributes(
         fontsize = 18,
@@ -68,6 +68,7 @@ function color_bbc()
     
     Attributes(
         color = bbc_black,
+        textcolor = bbc_black,
         Axis = (
             titlecolor = bbc_black,
             subtitlecolor = bbc_black,
@@ -112,7 +113,7 @@ This theme attempts to copy the `theme_bbc` from BBplot.
 function theme_bbc()
 
     return merge(
-        _theme_bbc(),
+        style_bbc(),
         color_bbc(),
         # once Makie can support multiple faces in one font file,
         # uncomment the following:
@@ -124,5 +125,7 @@ function theme_bbc()
         # )
     )
 end
+
+bbc() = theme_bbc()
 
 end

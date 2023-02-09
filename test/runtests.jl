@@ -11,7 +11,7 @@ using AlgebraOfGraphics
   mkpath(joinpath(dirname(@__DIR__), "img", "demofigure"))
   for i in ggthemr_colorthemes()
     @test_nowarn begin
-        fig = MakieThemes.demofigure(ggthemr(i))
+        fig = MakieThemes.demofigure(theme_ggthemr(i))
         save(joinpath(dirname(@__DIR__), "img", "demofigure", "$i.png"), fig; px_per_unit = 2)
         Makie.set_theme!(Makie.minimal_default)
     end
