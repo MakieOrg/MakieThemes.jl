@@ -56,7 +56,13 @@ end
 
 function color_ggthemr(theme::Symbol)
     ct = ColorTheme[theme]
-    palettes = merge(Makie.default_palettes, Attributes(color = ct[:swatch][2:end]))
+    palettes = merge(
+      Attributes(
+        color = ct[:swatch][2:end],
+        patchcolor = ct[:swatch][2:end],
+      ),
+      Makie.default_palettes, 
+    )
 
     Attributes(
         backgroundcolor = Makie.to_color(ct[:background]),
