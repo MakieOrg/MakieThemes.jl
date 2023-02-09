@@ -65,10 +65,12 @@ fig
 ```
 
 </details>
-![ggthemr_full](https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/dev/assets/img/ggthemr_full_fresh.png)
+<img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/dev/assets/img/ggthemr_full_fresh.png" alt="MakieThemes" width="650"/>
+
+![ggthemr_full]()
 
 This is the target theme I'm aiming for (image created with R)
-![ggthemr](img/fresh_ggthemr_r.png)
+<img src="img/fresh_ggthemr_r" alt="GGThemr in R" width="650"/>
 
 ## Color v/s style themes
 
