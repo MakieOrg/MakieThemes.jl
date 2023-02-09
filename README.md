@@ -12,65 +12,66 @@ at https://github.com/cttobin/ggthemr .
 Here's the current default look of Makie on my machine:
 
 ```julia
-using Makie
-scene = scatter(randn(20), randn(20), markersize = 0.2)
-scatter!(scene, randn(20), randn(20), markersize = 0.2)
-scatter!(scene, randn(20), randn(20), markersize = 0.2)
-scatter!(scene, randn(20), randn(20), markersize = 0.2)
-scatter!(scene, randn(20), randn(20), markersize = 0.2)
+using Makie, MakieThemes
+Makie.demoscatter()
 ```
-<img src="img/default.png" alt="default" width="500"/>
+<img src="https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/demoscatter/default.png" alt="default" width="500"/>
 
 Using the `:fresh` theme from `GGThemr`
 ```julia
 using MakieThemes
-show_ggthemr(:fresh)
+MakieThemes.demoscatter(:fresh)
 ```
-<img src="img/fresh.png" alt="ggthemr" width="500"/>
+<img src="https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/demoscatter/fresh.png" alt="ggthemr" width="500"/>
 
 Here's an expanded visualization based on the examples in the source theme:
 ```julia
-using CSV, Pkg, MakieThemes, AbstractPlotting, Makie, StatsMakie
+using CSV, DataFrames, MakieThemes, Makie, AlgebraOfGraphics
 for dataset ∈ (:www, :drivers, :mtcars, :diamonds)
-  @eval const $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t')
+  @eval $(dataset) = CSV.read(dirname(pathof(MakieThemes))*"/../data/"*$(string(dataset))*".tsv", delim = '\t', DataFrame)
 end
 
-AbstractPlotting.set_theme!(ggthemr(:fresh))
+Makie.set_theme!(ggthemr(:fresh))
 
-p1 = scatter(Data(www), :Minute, :Users,
-  Group(color = :Measure, marker = :Measure),
-  markersize = 6, marker = [:rect, :circle]);
+fig = Figure()
 
-p2 = plot(density, Data(mtcars),
-  :mpg, Group(color = :cyl));
+www_grid = draw!(fig[1, 1], data(www) * mapping(:Minute, :Users, color = :Measure, marker = :Measure) * (visual(Lines) + visual(Scatter)))
+legend!(fig[1, 1, Top()], www_grid; orientation = :horizontal, titleposition = :left)
 
-p3 = plot(Position.stack, histogram, Data(diamonds),
-  :price, Group(color = :cut));
 
-p4 = boxplot(Data(drivers), :Year, :Deaths);
+mtcars_grid = draw!(fig[1, 2], data(mtcars) * mapping(:mpg, color = :cyl => nonnumeric) * AlgebraOfGraphics.density())
 
-vbox(hbox(p3, p1), hbox(p4, p2))
+legend!(fig[1, 2, Top()], mtcars_grid; orientation = :horizontal, titleposition = :left)
+
+diamonds_grid = draw!(fig[2, 1], 
+    data(diamonds) * mapping(:price, color = :cut, stack = :cut) * AlgebraOfGraphics.histogram(); 
+    axis = (xtickformat = x -> string.(round.(Int, x)),)
+  )
+
+drivers_grid = draw!(fig[2, 2], data(drivers) * mapping(:Year, :Deaths) * visual(BoxPlot))
+
+fig
 ```
-![ggthemr_full](https://user-images.githubusercontent.com/8429802/52570314-611c1f00-2e13-11e9-93e8-29514b9d7af4.png)
+![ggthemr_full](https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/ggthemr_full_fresh.png)
 
 This is the target theme I'm aiming for (image created with R)
 ![ggthemr](img/fresh_ggthemr_r.png)
 
 #### Current issues:
-- [ ] font sizes vary, and the font is too bold
-- [ ] alignments across subpanels
+- [x] font sizes vary, and the font is too bold
+- [x] alignments across subpanels
 - [ ] axis line thickness
 - [ ] the period of the dashed line
-- [ ] overplotting of the axes by the dashed line
-- [ ] the missing legends
-- [ ] outliers and median marker for the boxplots
+- [x] overplotting of the axes by the dashed line
+- [x] the missing legends
+- [x] outliers and median marker for the boxplots
 - [x] reversed colors for the histogram
-- [ ] colored fill area
-- [ ] labelling of x and y axes
-- [ ] implicit position of the 0,0 point within axes
-- [ ] no white edge around marker points
+- [x] colored fill area
+- [x] labelling of x and y axes
+- [x] implicit position of the 0,0 point within axes
+- [x] no white edge around marker points
 
-Many of these should be addressed in StatsMakie or AbstractPlotting rather than here.
 
 Currently supported theme libraries are:
 - [ggthemr](ggthemr.md)
+- [bbplot](bbplot.md)
