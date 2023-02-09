@@ -1,8 +1,8 @@
 # MakieThemes
 
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://makie.org/MakieThemes.jl/stable/)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://makie.org/MakieThemes.jl/dev/)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://makieorg.github.io/MakieThemes.jl/stable/)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://makieorg.github.io/MakieThemes.jl/dev/)
 [![Build Status](https://github.com/MakieOrg/MakieThemes.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/MakieOrg/MakieThemes.jl/actions/workflows/CI.yml?query=branch%3Amaster)
 
 
