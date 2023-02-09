@@ -9,9 +9,9 @@ export theme_ggthemr, ggthemr, style_ggthemr, color_ggthemr, ggthemr_colorthemes
 ggthemr_colorthemes() = collect(keys(ColorTheme))
 
 
-function style_ggthemr() 
+function style_ggthemr(basewidth = 2, spinewidth = basewidth * 0.75) 
     return Attributes(
-        linewidth = 2,
+        linewidth = basewidth,
 
         fonts = (
             regular = "Noto Sans",
@@ -21,21 +21,21 @@ function style_ggthemr()
         ),
 
         Axis = Attributes(
-            spinewidth = 1.5,
+            spinewidth = spinewidth,
             bottomspinevisible = true,
             topspinevisible = false,
             leftspinevisible = true,
             rightspinevisible = false,
-            xgridwidth = 2,
-            ygridwidth = 2,
+            xgridwidth = basewidth,
+            ygridwidth = basewidth,
             xgridstyle = :dash,
             ygridstyle = :dash,
         ),
 
         Axis3 = Attributes(
-            xspinewidth = 1.5,
-            yspinewidth = 1.5,
-            zspinewidth = 1.5,
+            xspinewidth = spinewidth,
+            yspinewidth = spinewidth,
+            zspinewidth = spinewidth,
             xspinestyle = :dash,
             yspinestyle = :dash,
             zspinestyle = :dash,

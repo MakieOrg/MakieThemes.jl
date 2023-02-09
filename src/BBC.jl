@@ -6,6 +6,10 @@ export theme_bbc, style_bbc, color_bbc, bbc
 
 const bbc_black = Makie.to_color(colorant"#222222")
 const bbc_red = Makie.to_color(colorant"#b90005")
+const bbc_blue = Makie.to_color(colorant"#1380A1")
+const bbc_yellow = Makie.to_color(colorant"#FAAB18")
+
+
 
 function style_bbc(spinewidth = 1.5, gridwidth = 1.5)
 
