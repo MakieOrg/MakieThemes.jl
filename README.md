@@ -52,7 +52,7 @@ drivers_grid = draw!(fig[2, 2], data(drivers) * mapping(:Year, :Deaths) * visual
 
 fig
 ```
-![ggthemr_full](https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/demofigure/fresh.png)
+![ggthemr_full](https://raw.githubusercontent.com/JuliaPlots/MakieThemes.jl/gh-pages/previews/PR16/assets/img/ggthemr_full_fresh.png)
 
 This is the target theme I'm aiming for (image created with R)
 ![ggthemr](img/fresh_ggthemr_r.png)
