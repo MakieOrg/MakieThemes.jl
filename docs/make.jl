@@ -27,11 +27,11 @@ open(joinpath(dirname(dirname(pathof(MakieThemes))), "docs", "src", "themes", "g
         ```julia
         MakieThemes.demofigure(ggthemr(:$colortheme))
         ```
-        <img src="assets/img/demofigure/$colortheme.png" alt="ggthemr colortheme :$colortheme" width="900"/>
+        <img src="../assets/img/demofigure/$colortheme.png" alt="ggthemr colortheme :$colortheme" width="900"/>
         ```julia
         MakieThemes.demoscatter(ggthemr(:$colortheme))
         ```
-        <img src="assets/img/demoscatter/$colortheme.png" alt="ggthemr colortheme :$colortheme" width="900"/>
+        <img src="../assets/img/demoscatter/$colortheme.png" alt="ggthemr colortheme :$colortheme" width="900"/>
         """)
         println(io, "\n\n")
     end
