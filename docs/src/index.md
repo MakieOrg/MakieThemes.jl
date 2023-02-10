@@ -24,18 +24,18 @@ There are two main ways to visualize themes which `MakieThemes` provides, the `d
 These are visualized below with Makie's default theme, as a baseline:
 
 ```@example env
-MakieThemes.demofigure()
+MakieThemes.demofigure() # can also take a theme as input
 ```
 
 ```@example env
-MakieThemes.demoscatter()
+MakieThemes.demoscatter() # can also take a theme as input
 ```
 
 ## The concept of MakieThemes
 
 In MakieThemes, we try to maintain a separation between _color themes_ (dark v/s light theme, background colors, palettes, etc) and _style themes_ (fonts, grid styles, title alignments, etc). 
 
-This provides a lot of flexibility - you might mix the BBC's style with GGThemr's flat color scheme, simply using `merge(style_bbc(), color_ggthemr(:flat))`!
+This provides a lot of flexibility - you might mix the BBC's style with GGThemr's flat color scheme, simply using `merge(style_bbc(), color_ggthemr(:fresh))`!
 
 The way this is implemented is simple: each theme is implemented internally as separate color and style themes.  Take the example of `GGThemr`'s structure below:
 

@@ -54,8 +54,8 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
-        "BBC" => "themes/bbc.md",
         "GGThemr" => "themes/ggthemr.md",
+        "BBC" => "themes/bbc.md",
         "API" => "api.md"
     ],
 )
