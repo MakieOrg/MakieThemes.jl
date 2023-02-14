@@ -67,8 +67,6 @@ fig
 </details>
 <img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/dev/assets/img/ggthemr_full_fresh.png" alt="MakieThemes" width="650"/>
 
-![ggthemr_full]()
-
 This is the target theme I'm aiming for (image created with R)
 <img src="https://raw.githubusercontent.com/MakieOrg/MakieThemes.jl/gh-pages/dev/assets/img/fresh_ggthemr_r.png" alt="GGThemr in R" width="650"/>
 
