@@ -10,6 +10,7 @@ Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [compat]
 Makie = "0.16, 0.17, 0.18, 0.19"
+Colors = "0.11, 0.12"
 julia = "1"
 
 [extras]
