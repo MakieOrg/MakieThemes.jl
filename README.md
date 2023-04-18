@@ -46,20 +46,19 @@ Makie.set_theme!(ggthemr(:fresh))
 
 fig = Figure()
 
-www_grid = draw!(fig[1, 1], data(www) * mapping(:Minute, :Users, color = :Measure, marker = :Measure) * (visual(Lines) + visual(Scatter)))
+www_plot = data(www) * mapping(:Minute, :Users, color = :Measure) * (visual(Lines) + visual(Scatter) * mapping(marker = :Measure))
+www_grid = draw!(fig[1, 1], www_plot)
 legend!(fig[1, 1, Top()], www_grid; orientation = :horizontal, titleposition = :left)
 
-
-mtcars_grid = draw!(fig[1, 2], data(mtcars) * mapping(:mpg, color = :cyl => nonnumeric) * AlgebraOfGraphics.density())
-
+mtcars_plot = data(mtcars) * mapping(:mpg, color = :cyl => nonnumeric) * AlgebraOfGraphics.density()
+mtcars_grid = draw!(fig[1, 2], mtcars_plot)
 legend!(fig[1, 2, Top()], mtcars_grid; orientation = :horizontal, titleposition = :left)
 
-diamonds_grid = draw!(fig[2, 1], 
-    data(diamonds) * mapping(:price, color = :cut, stack = :cut) * AlgebraOfGraphics.histogram(); 
-    axis = (xtickformat = x -> string.(round.(Int, x)),)
-  )
+diamonds_plot = data(diamonds) * mapping(:price, color = :cut, stack = :cut) * AlgebraOfGraphics.histogram()
+draw!(fig[2, 1], diamonds_plot; axis = (xtickformat = x -> string.(round.(Int, x)),))
 
-drivers_grid = draw!(fig[2, 2], data(drivers) * mapping(:Year, :Deaths) * visual(BoxPlot))
+drivers_plot = data(drivers) * mapping(:Year, :Deaths) * visual(BoxPlot)
+draw!(fig[2, 2], drivers_plot)
 
 fig
 ```
