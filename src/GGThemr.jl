@@ -44,7 +44,7 @@ function style_ggthemr(basewidth = 2, spinewidth = basewidth * 0.75)
             zgridstyle = :dash,
         ),
         Legend = Attributes(
-            bgcolor = :transparent,
+            backgroundcolor = :transparent,
             framevisible = false,
         ),
         Scatter = Attributes(
@@ -61,7 +61,7 @@ function color_ggthemr(theme::Symbol)
         color = ct[:swatch][2:end],
         patchcolor = ct[:swatch][2:end],
       ),
-      Makie.default_palettes, 
+      Makie.DEFAULT_PALETTES, 
     )
 
     Attributes(

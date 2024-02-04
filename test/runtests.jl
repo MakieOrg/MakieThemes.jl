@@ -11,11 +11,13 @@ using AlgebraOfGraphics
   mkpath(joinpath(dirname(@__DIR__), "img", "demofigure"))
   mkpath(joinpath(dirname(@__DIR__), "img", "demoscatter"))
 
-  fig = MakieThemes.demofigure(Makie.minimal_default)
+  fig = MakieThemes.demofigure()
   save(joinpath(dirname(@__DIR__), "img", "demofigure", "default.png"), fig; px_per_unit = 2)
 
-  fig = MakieThemes.demoscatter(Makie.minimal_default)
+  fig = MakieThemes.demoscatter()
   save(joinpath(dirname(@__DIR__), "img", "demoscatter", "default.png"), fig; px_per_unit = 2)
+
+  old_theme = deepcopy(Makie.current_default_theme())
 
 
   for i in ggthemr_colorthemes()
@@ -26,7 +28,7 @@ using AlgebraOfGraphics
         fig = MakieThemes.demoscatter(theme_ggthemr(i))
         save(joinpath(dirname(@__DIR__), "img", "demoscatter", "$i.png"), fig; px_per_unit = 2)
 
-        Makie.set_theme!(Makie.minimal_default)
+        Makie.set_theme!(old_theme)
     end
   end
   fig = MakieThemes.demofigure(theme_bbc())
@@ -36,7 +38,7 @@ using AlgebraOfGraphics
   fig = MakieThemes.demoscatter(theme_bbc())
   save(joinpath(dirname(@__DIR__), "img", "demoscatter", "bbc.png"), fig; px_per_unit = 2)
   
-  Makie.set_theme!(Makie.minimal_default)
+  Makie.set_theme!(old_theme)
 end
 
 @testset "GGthemr" begin
