@@ -21,3 +21,7 @@ MakieThemes.demoscatter(theme_bbc())
 ```
 
 The `finalize_plot` functionality in `bbplot` is planned for the near future, so stay tuned!
+
+```@docs
+theme_bbc
+```

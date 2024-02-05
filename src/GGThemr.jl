@@ -5,11 +5,12 @@ using Makie, Colors
 
 export theme_ggthemr, ggthemr, style_ggthemr, color_ggthemr, ggthemr_colorthemes
 
+const ColorTheme = Dict{Symbol, Dict{Symbol, Any}}()
 
 ggthemr_colorthemes() = collect(keys(ColorTheme))
 
 
-function style_ggthemr(basewidth = 2, spinewidth = basewidth * 0.75) 
+function style_ggthemr(basewidth = 1.25, spinewidth = basewidth * 0.75) 
     return Attributes(
         linewidth = basewidth,
 
@@ -30,6 +31,8 @@ function style_ggthemr(basewidth = 2, spinewidth = basewidth * 0.75)
             ygridwidth = basewidth,
             xgridstyle = :dash,
             ygridstyle = :dash,
+            xticksize = 2.5,
+            yticksize = 2.5,
         ),
 
         Axis3 = Attributes(
@@ -42,13 +45,18 @@ function style_ggthemr(basewidth = 2, spinewidth = basewidth * 0.75)
             xgridstyle = :dash,
             ygridstyle = :dash,
             zgridstyle = :dash,
+            xlabeloffset = 30,
+            ylabeloffset = 30,
+            zlabeloffset = 30,
         ),
         Legend = Attributes(
             backgroundcolor = :transparent,
             framevisible = false,
+            rowgap = 0,
+            titlegap = 0,
         ),
         Scatter = Attributes(
-            markersize = 15,
+            markersize = 10,
             strokewidth = 0,
         ),
     )
@@ -113,10 +121,27 @@ function theme_ggthemr(theme::Symbol)
     merge(style_ggthemr(), color_ggthemr(theme))
 end
 
+"""
+    ggthemr(theme::Symbol)
+
+Return a Makie theme based on the `theme` from the `ggthemr` package.
+
+To view a sample image, you can use `MakieThemes.demofigure(ggthemr(theme))`.
+
+Available themes are:
+
+$(join(map(x -> "`:$(string(x))`", ggthemr_colorthemes()), ", ", " and ")).
+
+## Usage:
+```julia
+Makie.set_theme!(ggthemr(:fresh))
+# or
+Makie.with_theme(ggthemr(:fresh)) do
+    # your plotting code here
+end
+```
+"""
 ggthemr(theme) = theme_ggthemr(theme)
-
-const ColorTheme = Dict{Symbol, Dict{Symbol, Any}}()
-
 
 ColorTheme[:fresh] = Dict(
   :background => "#ffffff",

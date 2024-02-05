@@ -26,7 +26,7 @@ function demofigure(theme::Attributes = Makie.current_default_theme())
         f = Makie.Figure()
         ax = Makie.Axis(f[1, 1],
             title = "Measurements",
-            subtitle = "Example-5000 oscilloscope at 3 Hz",
+            subtitle = "Ex-9000 oscilloscope at 3 Hz",
             xlabel = "time (s)",
             ylabel = "amplitude")
 

@@ -2,5 +2,3 @@
 *.jl.*.cov
 *.jl.mem
 /Manifest.toml
-img/demofigure/*.png
-img/demoscatter/*.png
