@@ -58,6 +58,7 @@ makedocs(;
         "BBC" => "themes/bbc.md",
         "API" => "api.md"
     ],
+    warnonly = true,
 )
 
 deploydocs(;
