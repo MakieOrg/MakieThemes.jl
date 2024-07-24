@@ -79,13 +79,23 @@ const gruvbox_light_palette = Dict(
 )
 
 function color_gruvbox(palette; use_alt_bg=true, swap_bg=false, legend_alt_bg=false)
-    fg = parse(Colorant, palette[:fg])
-    fg_alt = parse(Colorant, palette[:fg4])
-    bg = parse(Colorant, palette[:bg])
-    bg_alt = parse(Colorant, palette[use_alt_bg ? :bg1 : :bg])
+    p(n) = parse(Colorant, palette[n])
+
+    fg = p(:fg)
+    fg_alt = p(:fg4)
+
+    bg = p(:bg)
+    bg_alt = p(use_alt_bg ? :bg1 : :bg)
+    bg1 = p(:bg1)
+    bg2 = p(:bg2)
+    bg3 = p(:bg3)
+    bg4 = p(:bg4)
     if swap_bg
         bg,bg_alt = bg_alt,bg
     end
+
+    red_hi = p(:red_hi)
+    red = p(:red)
 
     color_cycle = [parse(Colorant, palette[c])
                   for c in [
@@ -154,6 +164,19 @@ function color_gruvbox(palette; use_alt_bg=true, swap_bg=false, legend_alt_bg=fa
             ytickcolor = fg,
             ztickcolor = fg,
         ),
+        PolarAxis = (
+            clipcolor = bg,
+            backgroundcolor = bg_alt,
+            spinecolor = fg,
+            rgridcolor = fg_alt,
+            thetagridcolor = fg_alt,
+            tminorgridcolor = fg_alt,
+            thetaminorgridcolor = fg_alt,
+            rticklabelcolor = fg,
+            rticklabelstrokecolor = fg,
+            thetaticklabelcolor = fg,
+            thetaticklabelstrokecolor = fg,
+        ),
         Colorbar = (
             backgroundcolor = bg_alt,
             topspinecolor = fg,
@@ -167,6 +190,49 @@ function color_gruvbox(palette; use_alt_bg=true, swap_bg=false, legend_alt_bg=fa
         Legend = (
             framecolor = fg,
             backgroundcolor = legend_alt_bg ? bg_alt : bg,
+        ),
+        Button = (
+            buttoncolor = bg4,
+            buttoncolor_active = bg2,
+            buttoncolor_hover = bg3,
+            labelcolor = fg,
+            labelcolor_active = fg,
+            labelcolor_hover = fg,
+            strokecolor = fg_alt,
+        ),
+        IntervalSlider = (
+            color_active = red_hi,
+            color_active_dimmed = red,
+            color_inactive = bg3
+        ),
+        Label = (
+            color = fg,
+        ),
+        Menu = (
+            cell_color_active = bg2,
+            cell_color_hover = bg3,
+            cell_color_inactive_even = bg1,
+            cell_color_inactive_odd = bg1,
+            selection_cell_color_inactive = bg4,
+            dropdown_arrow_color = fg,
+        ),
+        Slider = (
+            color_active = red_hi,
+            color_active_dimmed = red,
+            color_inactive = bg3
+        ),
+        Textbox = (
+            bordercolor = bg4,
+            bordercolor_focused = red,
+            bordercolor_hover = red_hi,
+            cursorcolor = red,
+            textcolor = fg,
+            textcolor_placeholder = fg_alt,
+        ),
+        Toggle = (
+            buttoncolor = red_hi,
+            framecolor_active = red,
+            framecolor_inactive = bg3
         )
     )
 end
