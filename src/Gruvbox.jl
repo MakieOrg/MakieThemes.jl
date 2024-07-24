@@ -168,9 +168,23 @@ function color_gruvbox(palette; use_alt_bg=true)
     )
 end
 
+"""
+    color_gruvbox_light(; use_alt_bg=true)
+
+Set up the light version of the Gruvbox color theme. Optionally, use a
+slightly different background color for axes backgrounds, etc
+(default).
+"""
 color_gruvbox_light(;kwargs...) =
     color_gruvbox(gruvbox_light_palette; kwargs...)
 
+"""
+    color_gruvbox_dark(; use_alt_bg=true)
+
+Set up the dark version of the Gruvbox color theme. Optionally, use a
+slightly different background color for axes backgrounds, etc
+(default).
+"""
 color_gruvbox_dark(;kwargs...) =
     color_gruvbox(gruvbox_dark_palette; kwargs...)
 
