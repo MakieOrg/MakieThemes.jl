@@ -11,6 +11,10 @@ include("BBC.jl")
 using .BBC
 export theme_bbc, style_bbc, color_bbc
 
+include("Gruvbox.jl")
+using .Gruvbox
+export color_gruvbox_light, color_gruvbox_dark
+
 using Random
 
 """
