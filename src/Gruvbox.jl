@@ -78,11 +78,14 @@ const gruvbox_light_palette = Dict(
     :orange_hi => "#af3a03"
 )
 
-function color_gruvbox(palette; use_alt_bg=true)
+function color_gruvbox(palette; use_alt_bg=true, swap_bg=false, legend_alt_bg=false)
     fg = parse(Colorant, palette[:fg])
     fg_alt = parse(Colorant, palette[:fg4])
     bg = parse(Colorant, palette[:bg])
     bg_alt = parse(Colorant, palette[use_alt_bg ? :bg1 : :bg])
+    if swap_bg
+        bg,bg_alt = bg_alt,bg
+    end
 
     color_cycle = [parse(Colorant, palette[c])
                   for c in [
@@ -163,27 +166,37 @@ function color_gruvbox(palette; use_alt_bg=true)
         ),
         Legend = (
             framecolor = fg,
-            backgroundcolor = bg_alt,
+            backgroundcolor = legend_alt_bg ? bg_alt : bg,
         )
     )
 end
 
 """
-    color_gruvbox_light(; use_alt_bg=true)
+    color_gruvbox_light(; kwargs...)
 
-Set up the light version of the Gruvbox color theme. Optionally, use a
-slightly different background color for axes backgrounds, etc
-(default).
+Set up the light version of the Gruvbox color theme.
+
+Keyword arguments:
+
+- `use_alt_bg=true`: Use a slightly different background color inside
+  axes, etc.
+
+- `swap_bg=false`: Interchange the background colors used for the
+  figure and axes etc.
+
+- `legend_alt_bg=false`: Use the alternate background color for the
+  legend background. Which looks better depends on the legend is
+  inside the axis or outside it.
 """
 color_gruvbox_light(;kwargs...) =
     color_gruvbox(gruvbox_light_palette; kwargs...)
 
 """
-    color_gruvbox_dark(; use_alt_bg=true)
+    color_gruvbox_dark(; kwargs...)
 
-Set up the dark version of the Gruvbox color theme. Optionally, use a
-slightly different background color for axes backgrounds, etc
-(default).
+Set up the dark version of the Gruvbox color theme.
+
+See [`color_gruvbox_light`](@ref) for the available keyword arguments.
 """
 color_gruvbox_dark(;kwargs...) =
     color_gruvbox(gruvbox_dark_palette; kwargs...)
