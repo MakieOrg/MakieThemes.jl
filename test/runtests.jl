@@ -52,7 +52,7 @@ end
       
       fig = Figure()
       
-      www_grid = draw!(fig[1, 1], data(www) * mapping(:Minute, :Users, color = :Measure, marker = :Measure) * (visual(Lines) + visual(Scatter)))
+      www_grid = draw!(fig[1, 1], data(www) * mapping(:Minute, :Users, color = :Measure) * (visual(Lines) + mapping(marker = :Measure) * visual(Scatter)))
       legend!(fig[1, 1, Top()], www_grid; orientation = :horizontal, titleposition = :left)
       
       
