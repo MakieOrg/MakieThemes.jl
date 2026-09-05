@@ -6,8 +6,9 @@
 # These themes set colors (including spine, tick, grid, and frame colors) but
 # no structural chrome, so they compose with any Makie style theme. In Makie's
 # merge the first theme wins, so put Flexoki first, e.g.
-#   set_theme!(merge(color_flexoki_light(), theme_light()))
-#   set_theme!(merge(color_flexoki_dark(), theme_dark()))
+#   set_theme!(merge(color_flexoki(:light), theme_light()))
+#   set_theme!(merge(color_flexoki(:dark), theme_dark()))
+# Wrappers `color_flexoki_light()` / `color_flexoki_dark()` remain available.
 #
 # Note: Flexoki is designed to match Flexoki desktop/editor themes. The
 # sequential colormap and accent cycle are aesthetic, not scientifically
@@ -18,9 +19,7 @@ module Flexoki
 
 using Makie, Colors
 
-export color_flexoki_light, color_flexoki_dark
-
-rgb(hex::AbstractString) = parse(RGBf, hex)
+export color_flexoki, color_flexoki_light, color_flexoki_dark
 
 """
     flexoki_palette(background, accents)
@@ -51,7 +50,7 @@ function flexoki_sequential(stops)
 end
 
 """
-    color_flexoki(tokens)
+    color_flexoki(tokens::NamedTuple)
 
 Build a color-only Makie theme from Flexoki semantic tokens. Sets
 background, text, line, palette, colormap, and 3D lighting colors, plus the
@@ -59,7 +58,7 @@ color of axis borders/spines, ticks, grids, and legend/colorbar frames. No
 structural chrome (visibility, widths, paddings, tick sizes, etc.) is
 applied, so the result composes with any style theme.
 """
-function color_flexoki(tokens)
+function color_flexoki(tokens::NamedTuple)
     ui3 = tokens.ui3
     tx2 = tokens.tx2
     grid = tokens.grid
@@ -121,151 +120,151 @@ end
 
 ##
 # Flexoki 2.0 palette
-const FLEXOKI_BLACK = rgb("#100F0F")
-const FLEXOKI_PAPER = rgb("#FFFCF0")
+const FLEXOKI_BLACK = colorant"#100F0F"
+const FLEXOKI_PAPER = colorant"#FFFCF0"
 
 const FLEXOKI_BASE = Dict(
-    50 => rgb("#F2F0E5"),
-    100 => rgb("#E6E4D9"),
-    150 => rgb("#DAD8CE"),
-    200 => rgb("#CECDC3"),
-    300 => rgb("#B7B5AC"),
-    400 => rgb("#9F9D96"),
-    500 => rgb("#878580"),
-    600 => rgb("#6F6E69"),
-    700 => rgb("#575653"),
-    800 => rgb("#403E3C"),
-    850 => rgb("#343331"),
-    900 => rgb("#282726"),
-    950 => rgb("#1C1B1A"),
+    50 => colorant"#F2F0E5",
+    100 => colorant"#E6E4D9",
+    150 => colorant"#DAD8CE",
+    200 => colorant"#CECDC3",
+    300 => colorant"#B7B5AC",
+    400 => colorant"#9F9D96",
+    500 => colorant"#878580",
+    600 => colorant"#6F6E69",
+    700 => colorant"#575653",
+    800 => colorant"#403E3C",
+    850 => colorant"#343331",
+    900 => colorant"#282726",
+    950 => colorant"#1C1B1A",
 )
 
 const FLEXOKI_RED = Dict(
-    50 => rgb("#FFE1D5"),
-    100 => rgb("#FFCABB"),
-    150 => rgb("#FDB2A2"),
-    200 => rgb("#F89A8A"),
-    300 => rgb("#E8705F"),
-    400 => rgb("#D14D41"),
-    500 => rgb("#C03E35"),
-    600 => rgb("#AF3029"),
-    700 => rgb("#942822"),
-    800 => rgb("#6C201C"),
-    850 => rgb("#551B18"),
-    900 => rgb("#3E1715"),
-    950 => rgb("#261312"),
+    50 => colorant"#FFE1D5",
+    100 => colorant"#FFCABB",
+    150 => colorant"#FDB2A2",
+    200 => colorant"#F89A8A",
+    300 => colorant"#E8705F",
+    400 => colorant"#D14D41",
+    500 => colorant"#C03E35",
+    600 => colorant"#AF3029",
+    700 => colorant"#942822",
+    800 => colorant"#6C201C",
+    850 => colorant"#551B18",
+    900 => colorant"#3E1715",
+    950 => colorant"#261312",
 )
 
 const FLEXOKI_ORANGE = Dict(
-    50 => rgb("#FFE7CE"),
-    100 => rgb("#FED3AF"),
-    150 => rgb("#FCC192"),
-    200 => rgb("#F9AE77"),
-    300 => rgb("#EC8B49"),
-    400 => rgb("#DA702C"),
-    500 => rgb("#CB6120"),
-    600 => rgb("#BC5215"),
-    700 => rgb("#9D4310"),
-    800 => rgb("#71320D"),
-    850 => rgb("#59290D"),
-    900 => rgb("#40200D"),
-    950 => rgb("#27180E"),
+    50 => colorant"#FFE7CE",
+    100 => colorant"#FED3AF",
+    150 => colorant"#FCC192",
+    200 => colorant"#F9AE77",
+    300 => colorant"#EC8B49",
+    400 => colorant"#DA702C",
+    500 => colorant"#CB6120",
+    600 => colorant"#BC5215",
+    700 => colorant"#9D4310",
+    800 => colorant"#71320D",
+    850 => colorant"#59290D",
+    900 => colorant"#40200D",
+    950 => colorant"#27180E",
 )
 
 const FLEXOKI_YELLOW = Dict(
-    50 => rgb("#FAEEC6"),
-    100 => rgb("#F6E2A0"),
-    150 => rgb("#F1D67E"),
-    200 => rgb("#ECCB60"),
-    300 => rgb("#DFB431"),
-    400 => rgb("#D0A215"),
-    500 => rgb("#BE9207"),
-    600 => rgb("#AD8301"),
-    700 => rgb("#8E6B01"),
-    800 => rgb("#664D01"),
-    850 => rgb("#503D02"),
-    900 => rgb("#3A2D04"),
-    950 => rgb("#241E08"),
+    50 => colorant"#FAEEC6",
+    100 => colorant"#F6E2A0",
+    150 => colorant"#F1D67E",
+    200 => colorant"#ECCB60",
+    300 => colorant"#DFB431",
+    400 => colorant"#D0A215",
+    500 => colorant"#BE9207",
+    600 => colorant"#AD8301",
+    700 => colorant"#8E6B01",
+    800 => colorant"#664D01",
+    850 => colorant"#503D02",
+    900 => colorant"#3A2D04",
+    950 => colorant"#241E08",
 )
 
 const FLEXOKI_GREEN = Dict(
-    50 => rgb("#EDEECF"),
-    100 => rgb("#DDE2B2"),
-    150 => rgb("#CDD597"),
-    200 => rgb("#BEC97E"),
-    300 => rgb("#A0AF54"),
-    400 => rgb("#879A39"),
-    500 => rgb("#768D21"),
-    600 => rgb("#66800B"),
-    700 => rgb("#536907"),
-    800 => rgb("#3D4C07"),
-    850 => rgb("#313D07"),
-    900 => rgb("#252D09"),
-    950 => rgb("#1A1E0C"),
+    50 => colorant"#EDEECF",
+    100 => colorant"#DDE2B2",
+    150 => colorant"#CDD597",
+    200 => colorant"#BEC97E",
+    300 => colorant"#A0AF54",
+    400 => colorant"#879A39",
+    500 => colorant"#768D21",
+    600 => colorant"#66800B",
+    700 => colorant"#536907",
+    800 => colorant"#3D4C07",
+    850 => colorant"#313D07",
+    900 => colorant"#252D09",
+    950 => colorant"#1A1E0C",
 )
 
 const FLEXOKI_CYAN = Dict(
-    50 => rgb("#DDF1E4"),
-    100 => rgb("#BFE8D9"),
-    150 => rgb("#A2DECE"),
-    200 => rgb("#87D3C3"),
-    300 => rgb("#5ABDAC"),
-    400 => rgb("#3AA99F"),
-    500 => rgb("#2F968D"),
-    600 => rgb("#24837B"),
-    700 => rgb("#1C6C66"),
-    800 => rgb("#164F4A"),
-    850 => rgb("#143F3C"),
-    900 => rgb("#122F2C"),
-    950 => rgb("#101F1D"),
+    50 => colorant"#DDF1E4",
+    100 => colorant"#BFE8D9",
+    150 => colorant"#A2DECE",
+    200 => colorant"#87D3C3",
+    300 => colorant"#5ABDAC",
+    400 => colorant"#3AA99F",
+    500 => colorant"#2F968D",
+    600 => colorant"#24837B",
+    700 => colorant"#1C6C66",
+    800 => colorant"#164F4A",
+    850 => colorant"#143F3C",
+    900 => colorant"#122F2C",
+    950 => colorant"#101F1D",
 )
 
 const FLEXOKI_BLUE = Dict(
-    50 => rgb("#E1ECEB"),
-    100 => rgb("#C6DDE8"),
-    150 => rgb("#ABCFE2"),
-    200 => rgb("#92BFDB"),
-    300 => rgb("#66A0C8"),
-    400 => rgb("#4385BE"),
-    500 => rgb("#3171B2"),
-    600 => rgb("#205EA6"),
-    700 => rgb("#1A4F8C"),
-    800 => rgb("#163B66"),
-    850 => rgb("#133051"),
-    900 => rgb("#12253B"),
-    950 => rgb("#101A24"),
+    50 => colorant"#E1ECEB",
+    100 => colorant"#C6DDE8",
+    150 => colorant"#ABCFE2",
+    200 => colorant"#92BFDB",
+    300 => colorant"#66A0C8",
+    400 => colorant"#4385BE",
+    500 => colorant"#3171B2",
+    600 => colorant"#205EA6",
+    700 => colorant"#1A4F8C",
+    800 => colorant"#163B66",
+    850 => colorant"#133051",
+    900 => colorant"#12253B",
+    950 => colorant"#101A24",
 )
 
 const FLEXOKI_PURPLE = Dict(
-    50 => rgb("#F0EAEC"),
-    100 => rgb("#E2D9E9"),
-    150 => rgb("#D3CAE6"),
-    200 => rgb("#C4B9E0"),
-    300 => rgb("#A699D0"),
-    400 => rgb("#8B7EC8"),
-    500 => rgb("#735EB5"),
-    600 => rgb("#5E409D"),
-    700 => rgb("#4F3685"),
-    800 => rgb("#3C2A62"),
-    850 => rgb("#31234E"),
-    900 => rgb("#261C39"),
-    950 => rgb("#1A1623"),
+    50 => colorant"#F0EAEC",
+    100 => colorant"#E2D9E9",
+    150 => colorant"#D3CAE6",
+    200 => colorant"#C4B9E0",
+    300 => colorant"#A699D0",
+    400 => colorant"#8B7EC8",
+    500 => colorant"#735EB5",
+    600 => colorant"#5E409D",
+    700 => colorant"#4F3685",
+    800 => colorant"#3C2A62",
+    850 => colorant"#31234E",
+    900 => colorant"#261C39",
+    950 => colorant"#1A1623",
 )
 
 const FLEXOKI_MAGENTA = Dict(
-    50 => rgb("#FEE4E5"),
-    100 => rgb("#FCCFDA"),
-    150 => rgb("#F9B9CF"),
-    200 => rgb("#F4A4C2"),
-    300 => rgb("#E47DA8"),
-    400 => rgb("#CE5D97"),
-    500 => rgb("#B74583"),
-    600 => rgb("#A02F6F"),
-    700 => rgb("#87285E"),
-    800 => rgb("#641F46"),
-    850 => rgb("#4F1B39"),
-    900 => rgb("#39172B"),
-    950 => rgb("#24131D"),
+    50 => colorant"#FEE4E5",
+    100 => colorant"#FCCFDA",
+    150 => colorant"#F9B9CF",
+    200 => colorant"#F4A4C2",
+    300 => colorant"#E47DA8",
+    400 => colorant"#CE5D97",
+    500 => colorant"#B74583",
+    600 => colorant"#A02F6F",
+    700 => colorant"#87285E",
+    800 => colorant"#641F46",
+    850 => colorant"#4F1B39",
+    900 => colorant"#39172B",
+    950 => colorant"#24131D",
 )
 
 const FLEXOKI_ACCENTS_LIGHT = [
@@ -347,6 +346,17 @@ function flexoki_tokens(mode::Symbol)
 end
 
 """
+    color_flexoki(mode::Symbol)
+
+Return the color-only Flexoki theme for `mode` being `:light` or `:dark`.
+Token generation is handled internally via `flexoki_tokens`.
+Pass a tokens `NamedTuple` instead to customize.
+"""
+function color_flexoki(mode::Symbol)
+    return color_flexoki(flexoki_tokens(mode))
+end
+
+"""
     color_flexoki_light()
 
 Return the color-only Flexoki light theme.
@@ -356,9 +366,7 @@ palette. Accents and the sequential colormap are aesthetic, not scientifically
 designed perceptual or colorblind-safe colormaps, and are not recommended for
 publications that need accurate quantitative color encoding.
 """
-function color_flexoki_light()
-    return color_flexoki(flexoki_tokens(:light))
-end
+color_flexoki_light() = color_flexoki(:light)
 
 """
     color_flexoki_dark()
@@ -367,8 +375,6 @@ Return the color-only Flexoki dark theme.
 
 See [`color_flexoki_light`](@ref) for intended-use notes.
 """
-function color_flexoki_dark()
-    return color_flexoki(flexoki_tokens(:dark))
-end
+color_flexoki_dark() = color_flexoki(:dark)
 
 end

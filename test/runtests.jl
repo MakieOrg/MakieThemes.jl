@@ -50,16 +50,16 @@ using AlgebraOfGraphics
   fig = MakieThemes.demoscatter(color_gruvbox_dark())
   save(joinpath(dirname(@__DIR__), "img", "demoscatter", "gruvbox-dark.png"), fig; px_per_unit = 2)
 
-  fig = MakieThemes.demofigure(color_flexoki_light())
+  fig = MakieThemes.demofigure(color_flexoki(:light))
   save(joinpath(dirname(@__DIR__), "img", "demofigure", "flexoki-light.png"), fig; px_per_unit = 2)
 
-  fig = MakieThemes.demofigure(color_flexoki_dark())
+  fig = MakieThemes.demofigure(color_flexoki(:dark))
   save(joinpath(dirname(@__DIR__), "img", "demofigure", "flexoki-dark.png"), fig; px_per_unit = 2)
 
-  fig = MakieThemes.demoscatter(color_flexoki_light())
+  fig = MakieThemes.demoscatter(color_flexoki(:light))
   save(joinpath(dirname(@__DIR__), "img", "demoscatter", "flexoki-light.png"), fig; px_per_unit = 2)
 
-  fig = MakieThemes.demoscatter(color_flexoki_dark())
+  fig = MakieThemes.demoscatter(color_flexoki(:dark))
   save(joinpath(dirname(@__DIR__), "img", "demoscatter", "flexoki-dark.png"), fig; px_per_unit = 2)
 
   Makie.set_theme!(old_theme)
