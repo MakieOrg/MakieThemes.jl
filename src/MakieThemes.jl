@@ -17,7 +17,7 @@ export color_gruvbox_light, color_gruvbox_dark
 
 include("Flexoki.jl")
 using .Flexoki
-export color_flexoki, color_flexoki_light, color_flexoki_dark
+export color_flexoki, theme_flexoki
 
 using Random
 

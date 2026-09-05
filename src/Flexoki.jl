@@ -8,7 +8,7 @@
 # merge the first theme wins, so put Flexoki first, e.g.
 #   set_theme!(merge(color_flexoki(:light), theme_light()))
 #   set_theme!(merge(color_flexoki(:dark), theme_dark()))
-# Wrappers `color_flexoki_light()` / `color_flexoki_dark()` remain available.
+# or theme_flexoki() / theme_flexoki(:dark).
 #
 # Note: Flexoki is designed to match Flexoki desktop/editor themes. The
 # sequential colormap and accent cycle are aesthetic, not scientifically
@@ -19,7 +19,7 @@ module Flexoki
 
 using Makie, Colors
 
-export color_flexoki, color_flexoki_light, color_flexoki_dark
+export color_flexoki, theme_flexoki
 
 """
     flexoki_palette(background, accents)
@@ -346,35 +346,30 @@ function flexoki_tokens(mode::Symbol)
 end
 
 """
-    color_flexoki(mode::Symbol)
+    color_flexoki(mode::Symbol = :light)
 
-Return the color-only Flexoki theme for `mode` being `:light` or `:dark`.
-Token generation is handled internally via `flexoki_tokens`.
-Pass a tokens `NamedTuple` instead to customize.
-"""
-function color_flexoki(mode::Symbol)
-    return color_flexoki(flexoki_tokens(mode))
-end
-
-"""
-    color_flexoki_light()
-
-Return the color-only Flexoki light theme.
+Return the color-only Flexoki theme for `mode` being `:light` or `:dark`
+(default `:light`). Token generation is handled internally via
+`flexoki_tokens`. Pass a tokens `NamedTuple` instead to customize.
 
 Flexoki matches the [Flexoki](https://stephango.com/flexoki) desktop/editor
 palette. Accents and the sequential colormap are aesthetic, not scientifically
 designed perceptual or colorblind-safe colormaps, and are not recommended for
 publications that need accurate quantitative color encoding.
+
+These themes compose with style themes; put Flexoki first in `merge`, e.g.
+`set_theme!(merge(color_flexoki(), theme_light()))` or
+`set_theme!(merge(color_flexoki(:dark), theme_dark()))`.
 """
-color_flexoki_light() = color_flexoki(:light)
+function color_flexoki(mode::Symbol = :light)
+    return color_flexoki(flexoki_tokens(mode))
+end
 
 """
-    color_flexoki_dark()
+    theme_flexoki(mode::Symbol = :light)
 
-Return the color-only Flexoki dark theme.
-
-See [`color_flexoki_light`](@ref) for intended-use notes.
+Alias for `color_flexoki(mode)`. Flexoki themes are color-only.
 """
-color_flexoki_dark() = color_flexoki(:dark)
+theme_flexoki(mode::Symbol = :light) = color_flexoki(mode)
 
 end

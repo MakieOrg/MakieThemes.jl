@@ -14,7 +14,7 @@ Currently, we provide the following libraries:
 - `GGThemr` - inspired by [ggthemr](https://github.com/cttobin/ggthemr), a R library for ggplot themes.
 - `BBC` - emulating the BBC's plot style, found in [bbplot](https://github.com/bbc/bbplot).
 - `Gruvbox` - color themes based on the [Gruvbox](https://github.com/morhetz/gruvbox) palette (`color_gruvbox_light` / `color_gruvbox_dark`).
-- `Flexoki` - color-only themes based on [Flexoki](https://stephango.com/flexoki) (`color_flexoki(:light)` / `color_flexoki(:dark)`, or `color_flexoki_light` / `color_flexoki_dark`). Flexoki matches Flexoki desktop/editor themes; its accents and sequential colormap are aesthetic rather than scientifically designed perceptual / colorblind-safe colormaps, and are **not recommended for publications** that need accurate quantitative color encoding. Palette © Steph Ango (MIT); see `LICENSE-Flexoki.md`.
+- `Flexoki` - color-only themes based on [Flexoki](https://stephango.com/flexoki) (`color_flexoki()` / `color_flexoki(:dark)`, or `theme_flexoki`). Flexoki matches Flexoki desktop/editor themes; its accents and sequential colormap are aesthetic rather than scientifically designed perceptual / colorblind-safe colormaps, and are **not recommended for publications** that need accurate quantitative color encoding. Palette © Steph Ango (MIT); see `LICENSE-Flexoki.md`.
 
 We do plan to add more themes, and PRs are welcome!
 
