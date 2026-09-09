@@ -2,7 +2,7 @@ module Gruvbox
 
 using Makie, Colors
 
-export color_gruvbox_light, color_gruvbox_dark
+export color_gruvbox, theme_gruvbox, color_gruvbox_light, color_gruvbox_dark
 
 const gruvbox_dark_palette = Dict(
     :bg => "#282828",
@@ -78,7 +78,7 @@ const gruvbox_light_palette = Dict(
     :orange_hi => "#af3a03"
 )
 
-function color_gruvbox(palette; use_alt_bg=true, swap_bg=false, legend_alt_bg=false)
+function color_gruvbox(palette::AbstractDict; use_alt_bg=true, swap_bg=false, legend_alt_bg=false)
     p(n) = parse(Colorant, palette[n])
 
     fg = p(:fg)
@@ -236,6 +236,31 @@ function color_gruvbox(palette; use_alt_bg=true, swap_bg=false, legend_alt_bg=fa
         )
     )
 end
+
+"""
+    color_gruvbox(mode::Symbol = :light; kwargs...)
+
+Return the Gruvbox color theme for `mode` being `:light` or `:dark`
+(default `:light`).
+
+See [`color_gruvbox_light`](@ref) for the available keyword arguments.
+"""
+function color_gruvbox(mode::Symbol = :light; kwargs...)
+    if mode === :light
+        return color_gruvbox(gruvbox_light_palette; kwargs...)
+    elseif mode === :dark
+        return color_gruvbox(gruvbox_dark_palette; kwargs...)
+    else
+        throw(ArgumentError("mode must be :light or :dark, got $mode"))
+    end
+end
+
+"""
+    theme_gruvbox(mode::Symbol = :light; kwargs...)
+
+Alias for `color_gruvbox(mode; kwargs...)`. Gruvbox themes are color-only.
+"""
+theme_gruvbox(mode::Symbol = :light; kwargs...) = color_gruvbox(mode; kwargs...)
 
 """
     color_gruvbox_light(; kwargs...)
