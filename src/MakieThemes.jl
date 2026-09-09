@@ -15,6 +15,10 @@ include("Gruvbox.jl")
 using .Gruvbox
 export color_gruvbox, theme_gruvbox, color_gruvbox_light, color_gruvbox_dark
 
+include("Flexoki.jl")
+using .Flexoki
+export color_flexoki, theme_flexoki
+
 using Random
 
 """
