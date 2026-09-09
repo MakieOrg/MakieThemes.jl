@@ -17,8 +17,10 @@ Currently, we have the following theme libraries:
 
 - `GGThemr`, that emulates the themes at https://github.com/cttobin/ggthemr.  Accessed by `ggthemr(:colorscheme)`.
 - `BBC`, that emulates the [bbplot](https://github.com/bbc/bbplot) R package released by the BBC.  (Note that this does not include the lower bar with logo/label, though that may come in time as a utility).  Accessed by `theme_bbc()`.
+- `Gruvbox`, color-only themes based on [Gruvbox](https://github.com/morhetz/gruvbox).  Accessed by `color_gruvbox(:light)` / `color_gruvbox(:dark)` (or `theme_gruvbox`).
+- `Flexoki`, color-only themes based on [Flexoki](https://stephango.com/flexoki).  Accessed by `color_flexoki(:light)` / `color_flexoki(:dark)` (or `theme_flexoki`).
 
-To view all accessible themes, go to the GGThemr or BBC pages on the sidebar!
+Theme pages live in the sidebar (GGThemr, BBC, Gruvbox, Flexoki).
 
 There are two main ways to visualize themes which `MakieThemes` provides, the `demofigure` and `demoscatter` functions.
 These are visualized below with Makie's default theme, as a baseline:
@@ -44,6 +46,8 @@ color_ggthemr(:colortheme)  # implemented as color theme
 style_ggthemr()             # implemented as style theme
 theme_ggthemr(:colortheme) = merge(color_ggthemr(:colortheme), style_ggthemr())
 ```
+
+Color-only themes such as Gruvbox and Flexoki expose `color_*` / `theme_*` entry points and compose the same way — put the color theme first in `merge` so its colors win.
 
 In this way, you can stitch together various colour and style themes with ease.  
 
