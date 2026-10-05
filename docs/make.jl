@@ -57,6 +57,7 @@ makedocs(;
         "GGThemr" => "themes/ggthemr.md",
         "BBC" => "themes/bbc.md",
         "Gruvbox" => "themes/gruvbox.md",
+        "Flexoki" => "themes/flexoki.md",
         "API" => "api.md"
     ],
     warnonly = true,
